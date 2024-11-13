@@ -3,9 +3,5 @@
 ################################################################################
 
 /.vs
-/Domain/obj
-/Domain/bin/Debug/net8.0
-/Services/bin/Debug/net8.0
-/Services/obj
-/Application/bin/Debug/net8.0
-/Application/obj
+/**/obj/
+/**/bin/
