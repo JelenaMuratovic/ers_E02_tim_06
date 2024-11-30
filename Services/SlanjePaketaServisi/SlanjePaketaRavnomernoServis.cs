@@ -8,11 +8,17 @@ using System.Threading.Tasks;
 
 namespace Services.SlanjePaketaServisi
 {
-    public class SlanjePaketaNasumicnoServis : ISlanjePaketaServis
+    public class SlanjePaketaRavnomernoServis : ISlanjePaketaServis
     {
+        public SlanjePaketaRavnomernoServis()
+        {
+        }
+
         public bool PosaljiPakete(IEnumerable<MrezniPaket> paketi)
         {
             throw new NotImplementedException();
         }
+
     }
+
 }
