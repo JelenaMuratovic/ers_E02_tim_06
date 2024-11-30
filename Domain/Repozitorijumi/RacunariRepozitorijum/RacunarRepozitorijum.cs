@@ -24,7 +24,7 @@ namespace Domain.Repozitorijumi.RacunariRepozitorijum
         }
         public IEnumerable<Racunar> DobaviRacunar()
         {
-            ;return racunari;
+            return racunari;
         }
 
         public bool DodajRacunar(Racunar racunar)

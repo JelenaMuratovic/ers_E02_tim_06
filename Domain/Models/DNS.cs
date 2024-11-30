@@ -13,5 +13,13 @@ namespace Domain.Models
         public int MaxBrojPovezanihUredjaja {  get; set; }
         public string SimbolickaAdresa { get; set; } = "";
         public OperativnoStanje OperativnoStanje { get; set; }
+
+        public DNS(string iPAdresa, int maxBrojPovezanihUredjaja, string simbolickaAdresa, OperativnoStanje operativnoStanje)
+        {
+            IPAdresa = iPAdresa;
+            MaxBrojPovezanihUredjaja = maxBrojPovezanihUredjaja;
+            SimbolickaAdresa = simbolickaAdresa;
+            OperativnoStanje = operativnoStanje;
+        }
     }
 }
