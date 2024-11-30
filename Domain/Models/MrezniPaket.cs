@@ -14,5 +14,10 @@ namespace Domain.Models
         public int VelicinaDelaSaPodacima { get; set; }
         public string Sadrzaj { get; set; } = "";
         public string IPAdresaPrimaoca { get; set; } = "";
+
+        public override string? ToString()
+        {
+            return "Protokol: " + Protokol + " " + "Header len: " + VelicinaZaglavlja + " App len: " + VelicinaDelaSaPodacima + " Data: " + Sadrzaj + "Destination IP addr: " + IPAdresaPrimaoca;
+        }
     }
 }
