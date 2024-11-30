@@ -11,8 +11,4 @@
     <ProjectReference Include="..\Prezentacija\Prezentacija.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="SlanjePaketaServisi\" />
-  </ItemGroup>
-
 </Project>

@@ -13,11 +13,25 @@ namespace Services.MrezaServisi
     {
         private IAutentifikacijaServis auth;
         private IEvidencijaServis fileUpis;
+        private IKreiranjePaketaServis kreiranjePaketaServis;
+        public ISlanjePaketaServis slanjePaketaServis;
 
-        public MrezaServis(IAutentifikacijaServis auth, IEvidencijaServis fileUpis)
+        public MrezaServis(IAutentifikacijaServis auth, IEvidencijaServis fileUpis, IKreiranjePaketaServis kreiranjePaketaServis, ISlanjePaketaServis slanjePaketaServis)
         {
             this.auth = auth;
             this.fileUpis = fileUpis;
+            this.kreiranjePaketaServis = kreiranjePaketaServis;
+            this.slanjePaketaServis = slanjePaketaServis;
+        }
+
+        public IEnumerable<MrezniPaket> KreirajPakete(int brojPaketa)
+        {
+            return kreiranjePaketaServis.KreirajPakete(brojPaketa);
+        }
+
+        public bool PosaljiPakete(IEnumerable<MrezniPaket> paketi)
+        {
+            return slanjePaketaServis.PosaljiPakete(paketi);
         }
 
         public (bool, Korisnik) Prijava(string KorisnickoIme, string Lozinka)
@@ -29,5 +43,7 @@ namespace Services.MrezaServisi
         {
             fileUpis.Upisi(paket);
         }
+
+
     }
 }
