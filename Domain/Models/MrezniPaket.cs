@@ -19,5 +19,14 @@ namespace Domain.Models
         {
             return "Protokol: " + Protokol + " " + "Header len: " + VelicinaZaglavlja + " App len: " + VelicinaDelaSaPodacima + " Data: " + Sadrzaj + "Destination IP addr: " + IPAdresaPrimaoca;
         }
+
+        public MrezniPaket(MrezniProtokol protokol, int velicinaZaglavlja, int velicinaDelaSaPodacima, string sadrzaj, string iPAdresaPrimaoca)
+        {
+            Protokol = protokol;
+            VelicinaZaglavlja = velicinaZaglavlja;
+            VelicinaDelaSaPodacima = velicinaDelaSaPodacima;
+            Sadrzaj = sadrzaj;
+            IPAdresaPrimaoca = iPAdresaPrimaoca;
+        }
     }
 }
