@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using Domain.Services;
+using Services.MrezaServisi;
 using Services.SlanjePaketaServisi;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,12 @@ namespace Prezentacija.Meni
 {
     public class IspisMenija
     {
-        private readonly IMrezaServis mrezaServis;
+        private IMrezaServis mrezaServis;
         //private readonly Korisnik korisnik;
         private ISlanjePaketaServis slanjePaketaServis;
+        private IAutentifikacijaServis autentifikacija;
+        private IEvidencijaServis fileUpis;
+        private IKreiranjePaketaServis kreiranjePaketa;
 
         public IspisMenija(IMrezaServis mrezaServis)
         {
@@ -42,6 +46,7 @@ namespace Prezentacija.Meni
                         brojPaketa = Int32.Parse(Console.ReadLine() ?? "");
                         Console.WriteLine("1. Salji nasumicno\n2. Salji ravnomerno\n");
                         tipSlanja = Int32.Parse(Console.ReadLine() ?? "");
+                        mrezaServis.KreirajPakete(brojPaketa);
                         if (tipSlanja == 1)
                         {
                             slanjePaketaServis = new SlanjePaketaRavnomernoServis();
@@ -50,6 +55,8 @@ namespace Prezentacija.Meni
                         {
                             slanjePaketaServis = new SlanjePaketaNasumicnoServis();
                         }
+                        mrezaServis = new MrezaServis(autentifikacija, fileUpis,kreiranjePaketa, slanjePaketaServis);
+                        //mrezaServis.PosaljiPakete();
                         break;
                     case '2':
                         //PregledZapisaNaSajtu();
