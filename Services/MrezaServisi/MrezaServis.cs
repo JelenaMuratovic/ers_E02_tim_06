@@ -14,7 +14,7 @@ namespace Services.MrezaServisi
         private IAutentifikacijaServis auth;
         private IEvidencijaServis fileUpis;
         private IKreiranjePaketaServis kreiranjePaketaServis;
-        public ISlanjePaketaServis slanjePaketaServis;
+        private ISlanjePaketaServis slanjePaketaServis;
 
         public MrezaServis(IAutentifikacijaServis auth, IEvidencijaServis fileUpis, IKreiranjePaketaServis kreiranjePaketaServis, ISlanjePaketaServis slanjePaketaServis)
         {

@@ -1,9 +1,10 @@
 ﻿using Domain.Models;
 using Domain.Services;
 using Prezentacija.Autentifikacija;
+using Prezentacija.Meni;
 using Services.AutentifikacioniServisi;
 using Services.EvidencijaServisi;
-using Services.KreiranjePaketaServisi;
+using Prezentacija.KreiranjePaketa;
 using Services.MrezaServisi;
 using Services.SlanjePaketaServisi;
 
@@ -15,12 +16,15 @@ namespace Application
         {
             IAutentifikacijaServis autentifikacijaServis = new AutentifikacioniServis();
             IEvidencijaServis evidencijaServis = new FileEvidencijaServis();
-            IKreiranjePaketaServis kreiranjePaketaServis = new KreiranjePaketaServis();
+            IKreiranjePaketaServis kreiranjePaketaServis = new KreiranjePaketa();
             ISlanjePaketaServis slanjePaketaServis = new SlanjePaketaRavnomernoServis();
             IMrezaServis mrezaServis = new MrezaServis(autentifikacijaServis, evidencijaServis, kreiranjePaketaServis, slanjePaketaServis);
 
             var auth = new AutentifikacijaKorisnika(autentifikacijaServis, mrezaServis);
             if (!auth.UlogujSe(out Korisnik korisnik)) return;
+
+            var meni = new IspisMenija(mrezaServis);
+            meni.PrikaziMeni();
 
             
         }
