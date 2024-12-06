@@ -11,5 +11,6 @@ namespace Domain.Services
     public interface ISlanjePaketaServis
     {
         public bool PosaljiPakete(IEnumerable<MrezniPaket> paketi);
+        public bool RasporediPakete(IEnumerable<MrezniPaket> paketi);
     }
 }

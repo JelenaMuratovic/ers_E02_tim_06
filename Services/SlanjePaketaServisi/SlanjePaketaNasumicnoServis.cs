@@ -14,5 +14,10 @@ namespace Services.SlanjePaketaServisi
         {
             throw new NotImplementedException();
         }
+
+        public bool RasporediPakete(IEnumerable<MrezniPaket> paketi)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

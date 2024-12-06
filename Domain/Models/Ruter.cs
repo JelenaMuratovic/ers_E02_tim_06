@@ -1,4 +1,5 @@
 ﻿using Domain.Enums;
+using Domain.Repozitorijumi.PaketiRepozitorijum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,16 @@ namespace Domain.Models
         public int MaxBrzinaPrenosaPodataka { get; set; }
         public int BrojLANPrikljucka { get; set; }
         public VrstaRutera VrstaRutera { get; set; }
+
+        public IPaketRepozitorijum paketi_rutera = new PaketRepozitorijum();
+
+        public Ruter(string serijskiBrojProizvodjaca, int maxBrzinaPrenosaPodataka, int brojLANPrikljucka, VrstaRutera vrstaRutera)
+        {
+            SerijskiBrojProizvodjaca = serijskiBrojProizvodjaca;
+            MaxBrzinaPrenosaPodataka = maxBrzinaPrenosaPodataka;
+            BrojLANPrikljucka = brojLANPrikljucka;
+            VrstaRutera = vrstaRutera;
+        }
     }
+    
 }

@@ -49,7 +49,7 @@ namespace Prezentacija.Meni
                         tipSlanja = Int32.Parse(Console.ReadLine() ?? "");
                         //mrezaServis.KreirajPakete(brojPaketa);
                        
-                        if (tipSlanja == 1)
+                        if (tipSlanja == 2)
                         {
                             slanjePaketaServis = new SlanjePaketaRavnomernoServis();
                         }
@@ -58,11 +58,12 @@ namespace Prezentacija.Meni
                             slanjePaketaServis = new SlanjePaketaNasumicnoServis();
                         }
                         mrezaServis = new MrezaServis(autentifikacija, fileUpis, slanjePaketaServis);
-                        if (kreiranjePaketa.KreiranjePaketa(brojPaketa) == null)
-                            Console.WriteLine("nemas pakete");
-                        else
-                            Console.WriteLine("kreirani su paketi");
-                        //mrezaServis.PosaljiPakete();
+                        //if (kreiranjePaketa.KreiranjePaketa(brojPaketa) == null)
+                        //    Console.WriteLine("nemas pakete");
+                        //else
+                        //    Console.WriteLine("kreirani su paketi");
+                        List<MrezniPaket> kreiraniPaketi = kreiranjePaketa.KreiranjePaketa(brojPaketa) as List<MrezniPaket>;
+                        mrezaServis.PosaljiPakete(kreiraniPaketi);
                         break;
                     case '2':
                         //PregledZapisaNaSajtu();
