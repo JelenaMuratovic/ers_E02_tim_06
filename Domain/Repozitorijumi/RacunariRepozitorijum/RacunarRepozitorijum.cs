@@ -22,7 +22,7 @@ namespace Domain.Repozitorijumi.RacunariRepozitorijum
                     new("345C", 64, 512, TipSkladisneMemorije.SSD, "192.168.12.7"),
                 ];
         }
-        public IEnumerable<Racunar> DobaviRacunar()
+        public IEnumerable<Racunar> DobaviRacunare()
         {
             return racunari;
         }

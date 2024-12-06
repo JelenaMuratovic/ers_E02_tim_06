@@ -9,6 +9,6 @@ namespace Domain.Services
 {
     public interface IKreiranjePaketaServis
     {
-        IEnumerable<MrezniPaket> KreirajPakete(int brojPaketa);
+        IEnumerable<MrezniPaket> KreiranjePaketa(int brojPaketa);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using Domain.Services;
+using Prezentacija.KreiranjePaketa;
 using Services.MrezaServisi;
 using Services.SlanjePaketaServisi;
 using System;
@@ -18,7 +19,7 @@ namespace Prezentacija.Meni
         private ISlanjePaketaServis slanjePaketaServis;
         private IAutentifikacijaServis autentifikacija;
         private IEvidencijaServis fileUpis;
-        private IKreiranjePaketaServis kreiranjePaketa;
+        private IKreiranjePaketaServis kreiranjePaketa = new KreirajPakete();
 
         public IspisMenija(IMrezaServis mrezaServis)
         {
@@ -46,7 +47,8 @@ namespace Prezentacija.Meni
                         brojPaketa = Int32.Parse(Console.ReadLine() ?? "");
                         Console.WriteLine("1. Salji nasumicno\n2. Salji ravnomerno\n");
                         tipSlanja = Int32.Parse(Console.ReadLine() ?? "");
-                        mrezaServis.KreirajPakete(brojPaketa);
+                        //mrezaServis.KreirajPakete(brojPaketa);
+                       
                         if (tipSlanja == 1)
                         {
                             slanjePaketaServis = new SlanjePaketaRavnomernoServis();
@@ -55,7 +57,11 @@ namespace Prezentacija.Meni
                         {
                             slanjePaketaServis = new SlanjePaketaNasumicnoServis();
                         }
-                        mrezaServis = new MrezaServis(autentifikacija, fileUpis,kreiranjePaketa, slanjePaketaServis);
+                        mrezaServis = new MrezaServis(autentifikacija, fileUpis, slanjePaketaServis);
+                        if (kreiranjePaketa.KreiranjePaketa(brojPaketa) == null)
+                            Console.WriteLine("nemas pakete");
+                        else
+                            Console.WriteLine("kreirani su paketi");
                         //mrezaServis.PosaljiPakete();
                         break;
                     case '2':

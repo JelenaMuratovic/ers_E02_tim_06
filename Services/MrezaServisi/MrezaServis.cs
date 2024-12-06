@@ -13,20 +13,13 @@ namespace Services.MrezaServisi
     {
         private IAutentifikacijaServis auth;
         private IEvidencijaServis fileUpis;
-        private IKreiranjePaketaServis kreiranjePaketaServis;
         private ISlanjePaketaServis slanjePaketaServis;
 
-        public MrezaServis(IAutentifikacijaServis auth, IEvidencijaServis fileUpis, IKreiranjePaketaServis kreiranjePaketaServis, ISlanjePaketaServis slanjePaketaServis)
+        public MrezaServis(IAutentifikacijaServis auth, IEvidencijaServis fileUpis, ISlanjePaketaServis slanjePaketaServis)
         {
             this.auth = auth;
             this.fileUpis = fileUpis;
-            this.kreiranjePaketaServis = kreiranjePaketaServis;
             this.slanjePaketaServis = slanjePaketaServis;
-        }
-
-        public IEnumerable<MrezniPaket> KreirajPakete(int brojPaketa)
-        {
-            return kreiranjePaketaServis.KreirajPakete(brojPaketa);
         }
 
         public bool PosaljiPakete(IEnumerable<MrezniPaket> paketi)

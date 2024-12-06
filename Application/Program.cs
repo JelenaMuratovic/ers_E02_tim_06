@@ -16,9 +16,8 @@ namespace Application
         {
             IAutentifikacijaServis autentifikacijaServis = new AutentifikacioniServis();
             IEvidencijaServis evidencijaServis = new FileEvidencijaServis();
-            IKreiranjePaketaServis kreiranjePaketaServis = new KreiranjePaketa();
             ISlanjePaketaServis slanjePaketaServis = new SlanjePaketaRavnomernoServis();
-            IMrezaServis mrezaServis = new MrezaServis(autentifikacijaServis, evidencijaServis, kreiranjePaketaServis, slanjePaketaServis);
+            IMrezaServis mrezaServis = new MrezaServis(autentifikacijaServis, evidencijaServis, slanjePaketaServis);
 
             var auth = new AutentifikacijaKorisnika(autentifikacijaServis, mrezaServis);
             if (!auth.UlogujSe(out Korisnik korisnik)) return;

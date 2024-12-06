@@ -30,7 +30,7 @@ namespace Prezentacija.GenerisanjePaketa
         public static MrezniProtokol GenerisiNasumicanProtokol()
         {
             //random.Next(Enum.GetValues(typeof(MrezniProtokol)).Length) je random broj od 0-4
-            return (MrezniProtokol)random.Next(Enum.GetValues(typeof(MrezniProtokol)).Length);
+            return (MrezniProtokol)random.Next(Enum.GetValues(typeof(MrezniProtokol)).Length-1);
         }
         public static int GenerisiNasumicnuVelZaglavlja()
         {
@@ -42,11 +42,11 @@ namespace Prezentacija.GenerisanjePaketa
         }
         public static string GenerisiNasumicanSadrzaj()
         {
-            return sadrzaj[random.Next(sadrzaj.Length)];
+            return sadrzaj[random.Next(sadrzaj.Length-1)];
         }
         public static string GenerisiNasumicnuIPAdresu()
         {
-            return sadrzaj[random.Next(IPadresePrimaoca.Length)];
+            return sadrzaj[random.Next(IPadresePrimaoca.Length-1)];
         }
     }
 }

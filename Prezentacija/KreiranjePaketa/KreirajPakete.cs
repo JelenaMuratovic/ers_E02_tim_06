@@ -6,16 +6,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Repozitorijumi.PaketiRepozitorijum;
 
 namespace Prezentacija.KreiranjePaketa
 {
-    public class KreiranjePaketa : IKreiranjePaketaServis
+    public class KreirajPakete : IKreiranjePaketaServis
     {
+        IPaketRepozitorijum paketi = new PaketRepozitorijum();
 
-        public IEnumerable<MrezniPaket> KreirajPakete(int brojPaketa)
+        public IEnumerable<MrezniPaket> KreiranjePaketa(int brojPaketa)
         {
             MrezniPaket mp;
-            List<MrezniPaket> paketi = new List<MrezniPaket>();
             for (int i = 0; i < brojPaketa; i++)
             {
                 mp = new MrezniPaket(NasumicanSadrzaj.GenerisiNasumicanProtokol(),
@@ -23,9 +24,13 @@ namespace Prezentacija.KreiranjePaketa
                     NasumicanSadrzaj.GenerisiNasumicnuVelPodataka(),
                     NasumicanSadrzaj.GenerisiNasumicanSadrzaj(),
                     NasumicanSadrzaj.GenerisiNasumicnuIPAdresu());
-                paketi.Add(mp);
+                paketi.DodajPaket(mp);
             }
-            return paketi;
+            return paketi.DobaviPakete();
+        }
+
+        public KreirajPakete()
+        {
         }
     }
 }
