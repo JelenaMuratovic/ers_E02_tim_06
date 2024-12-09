@@ -14,7 +14,8 @@ namespace Services.EvidencijaServisi
         public void Upisi(string paket)
         {
             using StreamWriter sw = new(putanja, append: true);
-                sw.Write($"[{DateTime.Now.ToString("dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture)}]: {paket}\n");
+            sw.Write($"[{DateTime.Now.ToString("dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture)}]: {paket}\n");
+            Console.WriteLine("upisao sam");
         }
     }
 }

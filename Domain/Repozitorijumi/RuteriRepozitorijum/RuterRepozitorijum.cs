@@ -13,7 +13,17 @@ namespace Domain.Repozitorijumi.RuteriRepozitorijum
     {
         private static List<Ruter> ruteri;
 
-        private static Dictionary<string, List<MrezniPaket>> paketiRutera;
+        private Dictionary<string, List<MrezniPaket>> paketiRutera;
+
+        public RuterRepozitorijum()
+        {
+            paketiRutera = new Dictionary<string, List<MrezniPaket>>();
+            foreach (var ruter in ruteri)
+            {
+                paketiRutera[ruter.SerijskiBrojProizvodjaca] = new List<MrezniPaket>();
+            }
+        }
+
         static RuterRepozitorijum()
         {
             ruteri =
@@ -24,11 +34,11 @@ namespace Domain.Repozitorijumi.RuteriRepozitorijum
                     new("SJNDS894", 350, 12, VrstaRutera.BEZICNI)
                 ];
 
-            paketiRutera = new Dictionary<string, List<MrezniPaket>>();
-            foreach (var ruter in ruteri)
-            {
-                paketiRutera[ruter.SerijskiBrojProizvodjaca] = new List<MrezniPaket>();
-            }
+            //paketiRutera = new Dictionary<string, List<MrezniPaket>>();
+            //foreach (var ruter in ruteri)
+            //{
+            //    paketiRutera[ruter.SerijskiBrojProizvodjaca] = new List<MrezniPaket>();
+            //}
         }
         public bool DodajRuter(Ruter ruter)
         {

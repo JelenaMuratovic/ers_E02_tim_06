@@ -64,6 +64,7 @@ namespace Prezentacija.Meni
                         //    Console.WriteLine("kreirani su paketi");
                         List<MrezniPaket> kreiraniPaketi = kreiranjePaketa.KreiranjePaketa(brojPaketa) as List<MrezniPaket>;
                         mrezaServis.PosaljiPakete(kreiraniPaketi);
+                        kreiraniPaketi.Clear();
                         break;
                     case '2':
                         //PregledZapisaNaSajtu();

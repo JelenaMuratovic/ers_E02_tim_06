@@ -12,7 +12,17 @@ namespace Domain.Repozitorijumi.RacunariRepozitorijum
     public class RacunarRepozitorijum : IRacunarRepozitorijum
     {
         private static List<Racunar> racunari;
-        private static Dictionary<string, List<MrezniPaket>> paketiRacunara;
+        private Dictionary<string, List<MrezniPaket>> paketiRacunara;
+
+        public RacunarRepozitorijum()
+        {
+            paketiRacunara = new Dictionary<string, List<MrezniPaket>>();
+
+            foreach (var racunar in racunari)
+            {
+                paketiRacunara[racunar.LokalnaIPAdresa] = new List<MrezniPaket>();
+            }
+        }
 
         static RacunarRepozitorijum()
         {
@@ -23,12 +33,12 @@ namespace Domain.Repozitorijumi.RacunariRepozitorijum
                     new("345C", 64, 512, TipSkladisneMemorije.SSD, "192.168.12.7"),
                 ];
 
-            paketiRacunara = new Dictionary<string, List<MrezniPaket>>();
+            //paketiRacunara = new Dictionary<string, List<MrezniPaket>>();
 
-            foreach (var racunar in racunari)
-            {
-                paketiRacunara[racunar.LokalnaIPAdresa] = new List<MrezniPaket>();
-            }
+            //foreach (var racunar in racunari)
+            //{
+            //    paketiRacunara[racunar.LokalnaIPAdresa] = new List<MrezniPaket>();
+            //}
         }
         public IEnumerable<Racunar> DobaviRacunare()
         {
