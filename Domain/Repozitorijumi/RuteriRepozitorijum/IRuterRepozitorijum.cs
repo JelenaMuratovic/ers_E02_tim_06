@@ -10,5 +10,7 @@ namespace Domain.Repozitorijumi.RuteriRepozitorijum
     public interface IRuterRepozitorijum
     {
         public IEnumerable<Ruter> DobaviRutere();
+        public bool DodajRuter(Ruter ruter);
+        public Dictionary<string, List<MrezniPaket>> DobaviPaketeRutera();
     }
 }

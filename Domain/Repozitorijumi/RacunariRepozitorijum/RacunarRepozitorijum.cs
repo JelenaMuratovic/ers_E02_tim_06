@@ -12,6 +12,7 @@ namespace Domain.Repozitorijumi.RacunariRepozitorijum
     public class RacunarRepozitorijum : IRacunarRepozitorijum
     {
         private static List<Racunar> racunari;
+        private static Dictionary<string, List<MrezniPaket>> paketiRacunara;
 
         static RacunarRepozitorijum()
         {
@@ -21,6 +22,13 @@ namespace Domain.Repozitorijumi.RacunariRepozitorijum
                     new("234B", 64, 1024, TipSkladisneMemorije.HDD, "192.168.1.9"),
                     new("345C", 64, 512, TipSkladisneMemorije.SSD, "192.168.12.7"),
                 ];
+
+            paketiRacunara = new Dictionary<string, List<MrezniPaket>>();
+
+            foreach (var racunar in racunari)
+            {
+                paketiRacunara[racunar.LokalnaIPAdresa] = new List<MrezniPaket>();
+            }
         }
         public IEnumerable<Racunar> DobaviRacunare()
         {
@@ -35,6 +43,7 @@ namespace Domain.Repozitorijumi.RacunariRepozitorijum
                     return false;
             }
             racunari.Add(racunar);
+            paketiRacunara[racunar.LokalnaIPAdresa] = new List<MrezniPaket>();
             return true;
         }
 
@@ -47,6 +56,11 @@ namespace Domain.Repozitorijumi.RacunariRepozitorijum
                 return true;
             }
             return false;
+        }
+
+        public Dictionary<string, List<MrezniPaket>> DobaviPaketeRacunara()
+        {
+            return paketiRacunara;
         }
     }
 }

@@ -17,8 +17,6 @@ namespace Domain.Models
         public TipSkladisneMemorije TipSkladisneMemorije { get; set; }
         public string LokalnaIPAdresa { get; set; } = "";
 
-        public IPaketRepozitorijum paketi_racunara = new PaketRepozitorijum();
-
         public Racunar(string serijskiBrojProizvodjaca, int kapacitetRadneMemorije, int kapacitetSkladisneMemorije, TipSkladisneMemorije tipSkladisneMemorije, string lokalnaIPAdresa)
         {
             SerijskiBrojProizvodjaca = serijskiBrojProizvodjaca;

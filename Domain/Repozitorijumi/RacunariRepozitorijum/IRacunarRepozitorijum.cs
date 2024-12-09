@@ -12,5 +12,6 @@ namespace Domain.Repozitorijumi.RacunariRepozitorijum
         public bool DodajRacunar(Racunar racunar);
         public bool ObrisiRacunar(string SerijskiBroj);
         public IEnumerable<Racunar> DobaviRacunare();
+        public Dictionary<string, List<MrezniPaket>> DobaviPaketeRacunara();
     }
 }

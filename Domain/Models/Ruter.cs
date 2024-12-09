@@ -15,8 +15,6 @@ namespace Domain.Models
         public int BrojLANPrikljucka { get; set; }
         public VrstaRutera VrstaRutera { get; set; }
 
-        public IPaketRepozitorijum paketi_rutera = new PaketRepozitorijum();
-
         public Ruter(string serijskiBrojProizvodjaca, int maxBrzinaPrenosaPodataka, int brojLANPrikljucka, VrstaRutera vrstaRutera)
         {
             SerijskiBrojProizvodjaca = serijskiBrojProizvodjaca;

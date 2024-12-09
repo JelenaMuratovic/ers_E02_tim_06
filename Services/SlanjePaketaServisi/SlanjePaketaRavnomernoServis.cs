@@ -23,9 +23,10 @@ namespace Services.SlanjePaketaServisi
         {
             RasporediPakete(paketi);
             List<Racunar> pomocna_racunari = racunari.DobaviRacunare() as List<Racunar>;
-            foreach(Racunar r in pomocna_racunari)
+            var paketi_racunara = racunari.DobaviPaketeRacunara();
+            foreach(Racunar r in racunari.DobaviRacunare())
             {
-                RavnomernoSlanje(r.paketi_racunara.DobaviPakete());
+                RavnomernoSlanje(paketi_racunara[r.LokalnaIPAdresa]);
             }
             return true;
             
@@ -33,16 +34,25 @@ namespace Services.SlanjePaketaServisi
 
         public bool RavnomernoSlanje(IEnumerable<MrezniPaket> paketi)
         {
-            List<Ruter> ruteri_pomocna = ruteri.DobaviRutere() as List<Ruter>;
-            List<MrezniPaket> paketi_pomocni = paketi.ToList();
-            int svakome = paketi.Count() / ruteri_pomocna.Count();
-            int pomeraj = -1;
-            for (int i = 0; i < ruteri_pomocna.Count; i++)
+            List<MrezniPaket> paketiPomocni = paketi.ToList();
+            int svakome = paketi.Count() / racunari.DobaviRacunare().Count();
+            Dictionary<string, List<MrezniPaket>> paketiRutera = ruteri.DobaviPaketeRutera();
+
+            // Početni indeks za dodelu paketa
+            int index = 0;
+
+            // Iteracija kroz računare i dodela paketa
+            foreach (var ruter in ruteri.DobaviRutere())
             {
-                pomeraj++;
-                for (int j = 0; j < svakome; j++)
+
+                // Dodela paketa trenutnom računaru
+                for (int i = 0; i < svakome; i++)
                 {
-                    ruteri_pomocna[i].paketi_rutera.DodajPaket(paketi_pomocni[j + pomeraj * svakome]);
+                    if (index < paketiPomocni.Count())
+                    {
+                        paketiRutera[ruter.SerijskiBrojProizvodjaca].Add(paketiPomocni[index]);
+                        index++;
+                    }
                 }
             }
             return true;
@@ -50,25 +60,38 @@ namespace Services.SlanjePaketaServisi
 
         public bool RasporediPakete(IEnumerable<MrezniPaket> paketi)
         {
-            List<Racunar> racunari_pomocno = racunari.DobaviRacunare()?.ToList();
-            if (racunari_pomocno == null || racunari_pomocno.Count == 0)
+           // List<Racunar> racunari_pomocno = racunari.DobaviRacunare()?.ToList();
+            //if (racunari_pomocno == null || racunari_pomocno.Count == 0)
+            //{
+            //    throw new InvalidOperationException("Nema dostupnih računara za raspodelu paketa.");
+            //}
+            //if (paketi == null || !paketi.Any())
+            //{
+            //    throw new ArgumentException("Nema paketa za raspodelu.", nameof(paketi));
+            //}
+            List<MrezniPaket> paketiPomocni = paketi.ToList();
+            int svakome = paketi.Count() / racunari.DobaviRacunare().Count();
+            Dictionary<string, List<MrezniPaket>> paketiRacunara = racunari.DobaviPaketeRacunara();
+            if (svakome == 0)
             {
-                throw new InvalidOperationException("Nema dostupnih računara za raspodelu paketa.");
+                throw new InvalidOperationException("Broj paketa je manji od broja računara.");
             }
-            if (paketi == null || !paketi.Any())
-            {
-                throw new ArgumentException("Nema paketa za raspodelu.", nameof(paketi));
-            }
+
+            // Početni indeks za dodelu paketa
             int index = 0;
-            List<MrezniPaket> paketi_pomocni = paketi.ToList();
-            int svakome = paketi.Count() / racunari_pomocno.Count();
-            int pomeraj = -1;
-            for (int i=0; i< racunari_pomocno.Count; i++)
+
+            // Iteracija kroz računare i dodela paketa
+            foreach (var racunar in racunari.DobaviRacunare())
             {
-                pomeraj++;
-                for (int j=0; j< svakome;j++)
+
+                // Dodela paketa trenutnom računaru
+                for (int i = 0; i < svakome; i++)
                 {
-                    racunari_pomocno[i].paketi_racunara.DodajPaket(paketi_pomocni[j+pomeraj*svakome]);
+                    if (index < paketiPomocni.Count())
+                    {
+                        paketiRacunara[racunar.LokalnaIPAdresa].Add(paketiPomocni[index]);
+                        index++;
+                    }
                 }
             }
             return true;
