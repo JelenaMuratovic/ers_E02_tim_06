@@ -13,11 +13,13 @@ namespace Services.MrezaServisi
     {
         private IAutentifikacijaServis auth;
         private ISlanjePaketaServis slanjePaketaServis;
+        private IPregledEvidencijeServis pregledServis;
 
-        public MrezaServis(IAutentifikacijaServis auth, IEvidencijaServis fileUpis, ISlanjePaketaServis slanjePaketaServis)
+        public MrezaServis(IAutentifikacijaServis auth, IEvidencijaServis fileUpis, ISlanjePaketaServis slanjePaketaServis, IPregledEvidencijeServis pregledServis)
         {
             this.auth = auth;
             this.slanjePaketaServis = slanjePaketaServis;
+            this.pregledServis = pregledServis;
         }
 
         public bool PosaljiPakete()
@@ -25,12 +27,14 @@ namespace Services.MrezaServisi
             return slanjePaketaServis.PosaljiPakete();
         }
 
+        public string PregledPaketa(IEnumerable<MrezniPaket> listaPaketa)
+        {
+            return pregledServis.Pregled(listaPaketa);
+        }
+
         public (bool, Korisnik) Prijava(string KorisnickoIme, string Lozinka)
         {
             return auth.Prijava(KorisnickoIme, Lozinka);
         }
-
-
-
     }
 }

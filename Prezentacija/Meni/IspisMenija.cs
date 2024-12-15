@@ -1,8 +1,10 @@
 ﻿using Domain.Models;
+using Domain.Repozitorijumi.PaketiRepozitorijum;
 using Domain.Services;
 using Prezentacija.KreiranjePaketa;
 using Services;
 using Services.MrezaServisi;
+using Services.PregledEvidencijeServisi;
 using Services.SlanjePaketaServisi;
 using System;
 using System.Collections.Generic;
@@ -17,15 +19,18 @@ namespace Prezentacija.Meni
     {
         private IMrezaServis mrezaServis;
         //private readonly Korisnik korisnik;
+        private IPaketRepozitorijum paketi = new PaketRepozitorijum();
         private ISlanjePaketaServis slanjePaketaServis;
         private IAutentifikacijaServis autentifikacija;
         private IEvidencijaServis fileUpis;
         private IRasporediPakete rasporediPaketeServis = new RasporediPakete();
-        private IKreiranjePaketaServis kreiranjePaketa = new KreirajPakete();
+        private IKreiranjePaketaServis kreiranjePaketa;
+        private IPregledEvidencijeServis pregledServis;
 
         public IspisMenija(IMrezaServis mrezaServis)
         {
             this.mrezaServis = mrezaServis;
+            kreiranjePaketa = new KreirajPakete(paketi);
         }
 
         public void PrikaziMeni()
@@ -59,7 +64,7 @@ namespace Prezentacija.Meni
                         {
                             slanjePaketaServis = new SlanjePaketaNasumicnoServis();
                         }
-                        mrezaServis = new MrezaServis(autentifikacija, fileUpis, slanjePaketaServis);
+                        mrezaServis = new MrezaServis(autentifikacija, fileUpis, slanjePaketaServis, pregledServis);
                         //if (kreiranjePaketa.KreiranjePaketa(brojPaketa) == null)
                         //    Console.WriteLine("nemas pakete");
                         //else
@@ -67,10 +72,15 @@ namespace Prezentacija.Meni
                         List<MrezniPaket> kreiraniPaketi = kreiranjePaketa.KreiranjePaketa(brojPaketa) as List<MrezniPaket>;
                         rasporediPaketeServis.RasporediPaketeRacunarima();
                         mrezaServis.PosaljiPakete();
-                        kreiraniPaketi.Clear();
+                        //kreiraniPaketi.Clear();
                         break;
                     case '2':
                         //PregledZapisaNaSajtu();
+                        pregledServis = new PregledEvidencijeKonzolaServis();
+                        mrezaServis = new MrezaServis(autentifikacija, fileUpis, slanjePaketaServis, pregledServis);
+                        if(mrezaServis.PregledPaketa(paketi.DobaviPakete()) == "")
+                            Console.WriteLine("lista je prazna");
+                        Console.WriteLine(mrezaServis.PregledPaketa(paketi.DobaviPakete()));
                         break;
                     case '3':
                         kraj = true;

@@ -14,6 +14,11 @@ namespace Prezentacija.KreiranjePaketa
     {
         IPaketRepozitorijum paketi = new PaketRepozitorijum();
 
+        public KreirajPakete(IPaketRepozitorijum prethodniPaketi)
+        {
+            paketi = prethodniPaketi;
+        }
+
         public IEnumerable<MrezniPaket> KreiranjePaketa(int brojPaketa)
         {
             MrezniPaket mp;
@@ -27,10 +32,6 @@ namespace Prezentacija.KreiranjePaketa
                 paketi.DodajPaket(mp);
             }
             return paketi.DobaviPakete();
-        }
-
-        public KreirajPakete()
-        {
         }
     }
 }

@@ -11,5 +11,6 @@ namespace Domain.Services
     {
         public (bool, Korisnik) Prijava(string KorisnickoIme, string Lozinka);
         public bool PosaljiPakete();
+        public string PregledPaketa(IEnumerable<MrezniPaket> listaPaketa);
     }
 }
