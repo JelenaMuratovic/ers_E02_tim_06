@@ -31,6 +31,7 @@ namespace Prezentacija.KreiranjePaketa
                     NasumicanSadrzaj.GenerisiNasumicnuIPAdresu());
                 paketi.DodajPaket(mp);
             }
+
             return paketi.DobaviPakete();
         }
     }

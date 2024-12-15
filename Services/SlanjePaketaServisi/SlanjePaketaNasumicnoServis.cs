@@ -25,6 +25,7 @@ namespace Services.SlanjePaketaServisi
             var ruteri_lista = ruteri.DobaviRutere().ToList();
             foreach (MrezniPaket paket in paketi.DobaviPakete())
             {
+                paket.Poslat = true;
                 string serijskiBroj = ruteri_lista[new Random().Next(0, ruteri_lista.Count() - 1)].SerijskiBrojProizvodjaca;
                 ruterServis.PrimiPaket(serijskiBroj, paket);
             }
