@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Services
 {
-    public interface IDNS
+    public interface IDNServis
     {
         public bool PrimiPaket(MrezniPaket paket);
     }

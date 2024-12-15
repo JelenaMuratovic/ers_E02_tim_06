@@ -10,7 +10,6 @@ namespace Domain.Services
     public interface IMrezaServis
     {
         public (bool, Korisnik) Prijava(string KorisnickoIme, string Lozinka);
-        public void Upisi(string paket);
-        public bool PosaljiPakete(IEnumerable<MrezniPaket> paketi);
+        public bool PosaljiPakete();
     }
 }

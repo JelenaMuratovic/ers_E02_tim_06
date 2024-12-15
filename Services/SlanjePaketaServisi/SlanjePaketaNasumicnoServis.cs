@@ -10,12 +10,7 @@ namespace Services.SlanjePaketaServisi
 {
     public class SlanjePaketaNasumicnoServis : ISlanjePaketaServis
     {
-        public bool PosaljiPakete(IEnumerable<MrezniPaket> paketi)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool RasporediPakete(IEnumerable<MrezniPaket> paketi)
+        public bool PosaljiPakete()
         {
             throw new NotImplementedException();
         }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Services.DNSServisi
 {
-    public class DNSServis : IDNS
+    public class DNSServis : IDNServis
     {
         IEvidencijaServis evidencija = new FileEvidencijaServis();
         public bool PrimiPaket(MrezniPaket paket)

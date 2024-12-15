@@ -14,6 +14,7 @@ namespace Domain.Models
         public int MaxBrzinaPrenosaPodataka { get; set; }
         public int BrojLANPrikljucka { get; set; }
         public VrstaRutera VrstaRutera { get; set; }
+        public int BrojPoslatihPaketa {  get; set; }
 
         public Ruter(string serijskiBrojProizvodjaca, int maxBrzinaPrenosaPodataka, int brojLANPrikljucka, VrstaRutera vrstaRutera)
         {
@@ -21,6 +22,7 @@ namespace Domain.Models
             MaxBrzinaPrenosaPodataka = maxBrzinaPrenosaPodataka;
             BrojLANPrikljucka = brojLANPrikljucka;
             VrstaRutera = vrstaRutera;
+            BrojPoslatihPaketa = 0;
         }
     }
     

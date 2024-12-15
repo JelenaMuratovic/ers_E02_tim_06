@@ -13,15 +13,8 @@ namespace Domain.Repozitorijumi.RuteriRepozitorijum
     {
         private static List<Ruter> ruteri;
 
-        private Dictionary<string, List<MrezniPaket>> paketiRutera;
-
         public RuterRepozitorijum()
         {
-            paketiRutera = new Dictionary<string, List<MrezniPaket>>();
-            foreach (var ruter in ruteri)
-            {
-                paketiRutera[ruter.SerijskiBrojProizvodjaca] = new List<MrezniPaket>();
-            }
         }
 
         static RuterRepozitorijum()
@@ -33,12 +26,6 @@ namespace Domain.Repozitorijumi.RuteriRepozitorijum
                     new("LNSUD898", 200, 23, VrstaRutera.OBICNI),
                     new("SJNDS894", 350, 12, VrstaRutera.BEZICNI)
                 ];
-
-            //paketiRutera = new Dictionary<string, List<MrezniPaket>>();
-            //foreach (var ruter in ruteri)
-            //{
-            //    paketiRutera[ruter.SerijskiBrojProizvodjaca] = new List<MrezniPaket>();
-            //}
         }
         public bool DodajRuter(Ruter ruter)
         {
@@ -48,16 +35,11 @@ namespace Domain.Repozitorijumi.RuteriRepozitorijum
                     return false;
             }
             ruteri.Add(ruter);
-            paketiRutera[ruter.SerijskiBrojProizvodjaca] = new List<MrezniPaket>();
             return true;
         }
         public IEnumerable<Ruter> DobaviRutere()
         {
             return ruteri;
-        }
-        public Dictionary<string, List<MrezniPaket>> DobaviPaketeRutera()
-        {
-            return paketiRutera;
         }
     }
 }

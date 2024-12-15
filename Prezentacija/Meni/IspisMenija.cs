@@ -1,6 +1,7 @@
 ﻿using Domain.Models;
 using Domain.Services;
 using Prezentacija.KreiranjePaketa;
+using Services;
 using Services.MrezaServisi;
 using Services.SlanjePaketaServisi;
 using System;
@@ -19,6 +20,7 @@ namespace Prezentacija.Meni
         private ISlanjePaketaServis slanjePaketaServis;
         private IAutentifikacijaServis autentifikacija;
         private IEvidencijaServis fileUpis;
+        private IRasporediPakete rasporediPaketeServis = new RasporediPakete();
         private IKreiranjePaketaServis kreiranjePaketa = new KreirajPakete();
 
         public IspisMenija(IMrezaServis mrezaServis)
@@ -63,7 +65,8 @@ namespace Prezentacija.Meni
                         //else
                         //    Console.WriteLine("kreirani su paketi");
                         List<MrezniPaket> kreiraniPaketi = kreiranjePaketa.KreiranjePaketa(brojPaketa) as List<MrezniPaket>;
-                        mrezaServis.PosaljiPakete(kreiraniPaketi);
+                        rasporediPaketeServis.RasporediPaketeRacunarima();
+                        mrezaServis.PosaljiPakete();
                         kreiraniPaketi.Clear();
                         break;
                     case '2':

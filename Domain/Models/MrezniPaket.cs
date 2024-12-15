@@ -14,6 +14,8 @@ namespace Domain.Models
         public int VelicinaDelaSaPodacima { get; set; }
         public string Sadrzaj { get; set; } = "";
         public string IPAdresaPrimaoca { get; set; } = "";
+        public string IPAdresaPosiljaoca { get; set; } = "";
+        public bool Poslat { get; set; }
 
         public override string? ToString()
         {
@@ -27,6 +29,7 @@ namespace Domain.Models
             VelicinaDelaSaPodacima = velicinaDelaSaPodacima;
             Sadrzaj = sadrzaj;
             IPAdresaPrimaoca = iPAdresaPrimaoca;
+            Poslat = false;
         }
     }
 }

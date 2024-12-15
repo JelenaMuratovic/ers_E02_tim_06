@@ -12,19 +12,17 @@ namespace Services.MrezaServisi
     public class MrezaServis : IMrezaServis
     {
         private IAutentifikacijaServis auth;
-        private IEvidencijaServis fileUpis;
         private ISlanjePaketaServis slanjePaketaServis;
 
         public MrezaServis(IAutentifikacijaServis auth, IEvidencijaServis fileUpis, ISlanjePaketaServis slanjePaketaServis)
         {
             this.auth = auth;
-            this.fileUpis = fileUpis;
             this.slanjePaketaServis = slanjePaketaServis;
         }
 
-        public bool PosaljiPakete(IEnumerable<MrezniPaket> paketi)
+        public bool PosaljiPakete()
         {
-            return slanjePaketaServis.PosaljiPakete(paketi);
+            return slanjePaketaServis.PosaljiPakete();
         }
 
         public (bool, Korisnik) Prijava(string KorisnickoIme, string Lozinka)
@@ -32,10 +30,6 @@ namespace Services.MrezaServisi
             return auth.Prijava(KorisnickoIme, Lozinka);
         }
 
-        public void Upisi(string paket)
-        {
-            fileUpis.Upisi(paket);
-        }
 
 
     }
