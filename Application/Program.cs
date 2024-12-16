@@ -8,6 +8,7 @@ using Prezentacija.KreiranjePaketa;
 using Services.MrezaServisi;
 using Services.SlanjePaketaServisi;
 using Services.PregledEvidencijeServisi;
+using Services.DNSServisi;
 
 namespace Application
 {
@@ -18,8 +19,9 @@ namespace Application
             IAutentifikacijaServis autentifikacijaServis = new AutentifikacioniServis();
             IEvidencijaServis evidencijaServis = new FileEvidencijaServis();
             ISlanjePaketaServis slanjePaketaServis = new SlanjePaketaRavnomernoServis();
-            IPregledEvidencijeServis pregledServis = new PregledEvidencijeKonzolaServis();
-            IMrezaServis mrezaServis = new MrezaServis(autentifikacijaServis, evidencijaServis, slanjePaketaServis, pregledServis);
+            //IPregledEvidencijeServis pregledServis = new PregledEvidencijeKonzolaServis();
+            IDNServis dnsServis = new DNSServis();
+            IMrezaServis mrezaServis = new MrezaServis(autentifikacijaServis, evidencijaServis, slanjePaketaServis, dnsServis);
 
             var auth = new AutentifikacijaKorisnika(autentifikacijaServis, mrezaServis);
             if (!auth.UlogujSe(out Korisnik korisnik)) return;

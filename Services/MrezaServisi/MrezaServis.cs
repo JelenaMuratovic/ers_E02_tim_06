@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Models;
+using Domain.Repozitorijumi.RacunariRepozitorijum;
+using Domain.Repozitorijumi.RuteriRepozitorijum;
 using Domain.Services;
 using Services.EvidencijaServisi;
 
@@ -13,13 +15,30 @@ namespace Services.MrezaServisi
     {
         private IAutentifikacijaServis auth;
         private ISlanjePaketaServis slanjePaketaServis;
-        private IPregledEvidencijeServis pregledServis;
+        private IDNServis dnsServis;
+        private IRacunarRepozitorijum racunari = new RacunarRepozitorijum();
+        private IRuterRepozitorijum ruteri = new RuterRepozitorijum();
 
-        public MrezaServis(IAutentifikacijaServis auth, IEvidencijaServis fileUpis, ISlanjePaketaServis slanjePaketaServis, IPregledEvidencijeServis pregledServis)
+        public MrezaServis(IAutentifikacijaServis auth, IEvidencijaServis fileUpis, ISlanjePaketaServis slanjePaketaServis, IDNServis dnsServis)
         {
             this.auth = auth;
             this.slanjePaketaServis = slanjePaketaServis;
-            this.pregledServis = pregledServis;
+            this.dnsServis = dnsServis;
+        }
+
+        public bool DodajRacunar(Racunar racunar)
+        {
+            return racunari.DodajRacunar(racunar);
+        }
+
+        public bool DodajRuter(Ruter ruter)
+        {
+            return ruteri.DodajRuter(ruter);
+        }
+
+        public bool ObrisiRacunar(string serijskiBroj)
+        {
+            return racunari.ObrisiRacunar(serijskiBroj);
         }
 
         public bool PosaljiPakete()
@@ -29,7 +48,7 @@ namespace Services.MrezaServisi
 
         public string PregledPaketa(IEnumerable<MrezniPaket> listaPaketa)
         {
-            return pregledServis.Pregled(listaPaketa);
+            return dnsServis.Evidentiraj(listaPaketa);
         }
 
         public (bool, Korisnik) Prijava(string KorisnickoIme, string Lozinka)

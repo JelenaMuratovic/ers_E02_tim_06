@@ -8,7 +8,7 @@ using Domain.Enums;
 
 namespace Prezentacija.GenerisanjePaketa
 {
-    public class NasumicanSadrzaj
+    public class NasumicanSadrzajPaketa
     {
         private static Random  random = new Random();
         private static readonly string[] sadrzaj =
@@ -46,7 +46,7 @@ namespace Prezentacija.GenerisanjePaketa
         }
         public static string GenerisiNasumicnuIPAdresu()
         {
-            return sadrzaj[random.Next(IPadresePrimaoca.Length-1)];
+            return IPadresePrimaoca[random.Next(IPadresePrimaoca.Length-1)];
         }
     }
 }

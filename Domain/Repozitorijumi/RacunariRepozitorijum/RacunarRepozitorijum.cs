@@ -21,9 +21,9 @@ namespace Domain.Repozitorijumi.RacunariRepozitorijum
         {
             racunari =
                 [
-                    new("123A", 16, 256, TipSkladisneMemorije.SSD, "192.168.10.0"),
-                    new("234B", 64, 1024, TipSkladisneMemorije.HDD, "192.168.1.9"),
-                    new("345C", 64, 512, TipSkladisneMemorije.SSD, "192.168.12.7"),
+                    new("123", 16, 256, TipSkladisneMemorije.SSD, "192.168.10.1"),
+                    new("124", 64, 1024, TipSkladisneMemorije.HDD, "192.168.10.2"),
+                    new("125", 64, 512, TipSkladisneMemorije.SSD, "192.168.12.3"),
                 ];
         }
         public IEnumerable<Racunar> DobaviRacunare()
@@ -33,7 +33,7 @@ namespace Domain.Repozitorijumi.RacunariRepozitorijum
 
         public bool DodajRacunar(Racunar racunar)
         {
-            foreach(Racunar r in racunari)
+            foreach (Racunar r in racunari)
             {
                 if (r.SerijskiBrojProizvodjaca.Equals(racunar.SerijskiBrojProizvodjaca))
                     return false;

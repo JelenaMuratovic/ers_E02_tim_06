@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Services
 {
-    public interface IDNServis
+    public interface IKreirajRacunar
     {
-        public bool PrimiPaket(MrezniPaket paket);
-        public string Evidentiraj(IEnumerable<MrezniPaket> listaPaketa);
+        public Racunar KreirajRacunar();
     }
 }

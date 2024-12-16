@@ -24,11 +24,11 @@ namespace Prezentacija.KreiranjePaketa
             MrezniPaket mp;
             for (int i = 0; i < brojPaketa; i++)
             {
-                mp = new MrezniPaket(NasumicanSadrzaj.GenerisiNasumicanProtokol(),
-                    NasumicanSadrzaj.GenerisiNasumicnuVelZaglavlja(),
-                    NasumicanSadrzaj.GenerisiNasumicnuVelPodataka(),
-                    NasumicanSadrzaj.GenerisiNasumicanSadrzaj(),
-                    NasumicanSadrzaj.GenerisiNasumicnuIPAdresu());
+                mp = new MrezniPaket(NasumicanSadrzajPaketa.GenerisiNasumicanProtokol(),
+                    NasumicanSadrzajPaketa.GenerisiNasumicnuVelZaglavlja(),
+                    NasumicanSadrzajPaketa.GenerisiNasumicnuVelPodataka(),
+                    NasumicanSadrzajPaketa.GenerisiNasumicanSadrzaj(),
+                    NasumicanSadrzajPaketa.GenerisiNasumicnuIPAdresu());
                 paketi.DodajPaket(mp);
             }
 
