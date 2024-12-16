@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
+    [Serializable]
     public class MrezniPaket
     {
         public MrezniProtokol Protokol { get; set; }
@@ -16,7 +17,9 @@ namespace Domain.Models
         public string IPAdresaPrimaoca { get; set; } = "";
         public string IPAdresaPosiljaoca { get; set; } = "";
         public bool Poslat { get; set; }
-
+        public MrezniPaket()
+        {
+        }
         public override string? ToString()
         {
             return "Protokol: " + Protokol + " " + "Header len: " + VelicinaZaglavlja + " App len: " + VelicinaDelaSaPodacima + " Data: " + Sadrzaj + "Destination IP addr: " + IPAdresaPrimaoca;

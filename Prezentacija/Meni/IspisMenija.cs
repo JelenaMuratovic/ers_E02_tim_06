@@ -38,7 +38,7 @@ namespace Prezentacija.Meni
             bool kraj = false;
             while (!kraj)
             {
-                Console.WriteLine("\n1. Salji pakete\n2. Pregled paketa\n3. Sacuvaj pakete (u .xml fajl)\n4. Obrisi racunar");
+                Console.WriteLine("\n1. Salji pakete\n2. Pregled paketa\n3. Sacuvaj pakete (u .xml fajl)\n4. Obrisi racunar\n5.Izadji iz programa");
                 Console.Write("Opcija: ");
                 string? opcija = Console.ReadLine();
 
@@ -75,7 +75,7 @@ namespace Prezentacija.Meni
                         //kreiraniPaketi.Clear();
                         break;
                     case '2':
-                        //PregledZapisaNaSajtu();
+                        //PregledZapisaNaSajtu;
                         pregledServis = new PregledEvidencijeKonzolaServis();
                         mrezaServis = new MrezaServis(autentifikacija, fileUpis, slanjePaketaServis, pregledServis);
                         if(mrezaServis.PregledPaketa(paketi.DobaviPakete()) == "")
@@ -83,6 +83,13 @@ namespace Prezentacija.Meni
                         Console.WriteLine(mrezaServis.PregledPaketa(paketi.DobaviPakete()));
                         break;
                     case '3':
+                        pregledServis = new PregledEvidencijeXMLServis();
+                        mrezaServis = new MrezaServis(autentifikacija, fileUpis, slanjePaketaServis, pregledServis);
+                        Console.WriteLine(mrezaServis.PregledPaketa(paketi.DobaviPakete()));
+                        break;
+                    case '4':
+                        break;
+                    case '5':
                         kraj = true;
                         break;
                     default:
