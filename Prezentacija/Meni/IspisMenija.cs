@@ -4,6 +4,7 @@ using Domain.Repozitorijumi.RacunariRepozitorijum;
 using Domain.Services;
 using Prezentacija.KreiranjePaketa;
 using Prezentacija.KreiranjeRacunara;
+using Prezentacija.KreiranjeRutera;
 using Services;
 using Services.DNSServisi;
 using Services.MrezaServisi;
@@ -28,7 +29,8 @@ namespace Prezentacija.Meni
         private IEvidencijaServis fileUpis;
         private IRasporediPakete rasporediPaketeServis = new RasporediPakete();
         private IKreiranjePaketaServis kreiranjePaketa;
-        private IKreirajRacunar kreiranjeRacunara = new KreirajRacunar();
+        private IKreiranjeRacunaraServis kreiranjeRacunara = new KreirajRacunar();
+        private IKreiranjeRuteraServis kreiranjeRutera = new KreirajRuter();
         private IDNServis dnsServis;
 
         public IspisMenija(IMrezaServis mrezaServis)
@@ -111,6 +113,12 @@ namespace Prezentacija.Meni
                             Console.WriteLine("Ne postoji racunar sa tim serijskim brojem");
                         break;
                     case '6':
+                        bool uspesnoDodavanjeRuter = mrezaServis.DodajRuter(kreiranjeRutera.KreirajRuter());
+                        if (uspesnoDodavanjeRuter)
+                            Console.WriteLine("\nUspesno ste dodali ruter");
+                        else
+                            Console.WriteLine("\nRuter nije dodat");
+                        Console.WriteLine(mrezaServis.PregledRutera());
                         break;
                     case '7':
                         kraj = true;

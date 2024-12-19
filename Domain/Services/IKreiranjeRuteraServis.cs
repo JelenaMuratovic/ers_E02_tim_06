@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Services
 {
-    public interface IKreirajRacunar
+    public interface IKreiranjeRuteraServis
     {
-        public Racunar KreirajRacunar();
+        public Ruter KreirajRuter();
     }
 }

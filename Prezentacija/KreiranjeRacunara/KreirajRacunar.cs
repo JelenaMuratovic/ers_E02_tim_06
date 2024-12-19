@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Prezentacija.KreiranjeRacunara
 {
-    public class KreirajRacunar : IKreirajRacunar
+    public class KreirajRacunar : IKreiranjeRacunaraServis
     {
-        Racunar IKreirajRacunar.KreirajRacunar()
+        Racunar IKreiranjeRacunaraServis.KreirajRacunar()
         {
             return new Racunar(NasumicnoGenerisanjeRacunara.GenerisiSerijskiBroj(),
                                 NasumicnoGenerisanjeRacunara.GenerisiNasumicanKapacitetRadneMemorije(), 

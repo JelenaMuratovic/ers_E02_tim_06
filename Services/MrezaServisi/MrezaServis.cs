@@ -57,7 +57,11 @@ namespace Services.MrezaServisi
         }
         public string? PregledRacunara()
         {
-            return racunari.ToString();
+            return "racunari:\n" + racunari.ToString();
+        }
+        public string? PregledRutera()
+        {
+            return "ruteri:\n" + ruteri.ToString();
         }
     }
 }

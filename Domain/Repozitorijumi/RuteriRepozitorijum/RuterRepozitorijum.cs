@@ -21,10 +21,10 @@ namespace Domain.Repozitorijumi.RuteriRepozitorijum
         {
             ruteri =
                 [
-                    new("SDFJ893", 300, 89, VrstaRutera.OBICNI),
-                    new("ANDK900", 500, 32, VrstaRutera.BEZICNI),
-                    new("LNSUD898", 200, 23, VrstaRutera.OBICNI),
-                    new("SJNDS894", 350, 12, VrstaRutera.BEZICNI)
+                    new("223", 300, 89, VrstaRutera.OBICNI),
+                    new("224", 500, 32, VrstaRutera.BEZICNI),
+                    new("225", 200, 23, VrstaRutera.OBICNI),
+                    new("226", 350, 12, VrstaRutera.BEZICNI)
                 ];
         }
         public bool DodajRuter(Ruter ruter)
@@ -40,6 +40,16 @@ namespace Domain.Repozitorijumi.RuteriRepozitorijum
         public IEnumerable<Ruter> DobaviRutere()
         {
             return ruteri;
+        }
+
+        public override string? ToString()
+        {
+            string ruteri_ispis = "";
+            foreach (Ruter r in ruteri)
+            {
+                ruteri_ispis += r.SerijskiBrojProizvodjaca + "\n";
+            }
+            return ruteri_ispis;
         }
     }
 }
