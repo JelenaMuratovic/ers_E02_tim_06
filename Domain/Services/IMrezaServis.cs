@@ -15,5 +15,6 @@ namespace Domain.Services
         public bool DodajRacunar(Racunar racunar);
         public bool ObrisiRacunar(string serijskiBroj);
         public bool DodajRuter(Ruter ruter);
+        public string PregledRacunara();
     }
 }

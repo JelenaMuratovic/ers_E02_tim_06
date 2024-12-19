@@ -97,10 +97,12 @@ namespace Prezentacija.Meni
                             Console.WriteLine("\nUspesno ste dodali racunar");
                         else
                             Console.WriteLine("\nRacunar nije dodat");
+                        //Console.WriteLine(mrezaServis.PregledRacunara());
                         break;
                     case '5':
                         //ne radi
                         Console.WriteLine("Unesite serijski broj racunara kojeg zelite da obrisete: ");
+                        Console.WriteLine(mrezaServis.PregledRacunara());
                         string serijskiBroj = Console.ReadLine();
                         bool uspesnoBrisanje = mrezaServis.ObrisiRacunar(serijskiBroj);
                         if(uspesnoBrisanje)

@@ -55,5 +55,9 @@ namespace Services.MrezaServisi
         {
             return auth.Prijava(KorisnickoIme, Lozinka);
         }
+        public string? PregledRacunara()
+        {
+            return racunari.ToString();
+        }
     }
 }

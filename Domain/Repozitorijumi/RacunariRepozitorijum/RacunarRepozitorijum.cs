@@ -31,6 +31,16 @@ namespace Domain.Repozitorijumi.RacunariRepozitorijum
             return racunari;
         }
 
+        public override string? ToString()
+        {
+            string racunari_ispis = "";
+            foreach (Racunar r in racunari)
+            {
+                racunari_ispis += r.SerijskiBrojProizvodjaca + "\n";
+            }
+            return racunari_ispis;
+        }
+
         public bool DodajRacunar(Racunar racunar)
         {
             foreach (Racunar r in racunari)
@@ -47,8 +57,10 @@ namespace Domain.Repozitorijumi.RacunariRepozitorijum
             foreach (Racunar r in racunari)
             {
                 if (r.SerijskiBrojProizvodjaca.Equals(SerijskiBroj))
+                {
                     racunari.Remove(r);
-                return true;
+                    return true;
+                }
             }
             return false;
         }
