@@ -12,18 +12,32 @@ namespace Services.RuterServisi
 {
     public class RuterServis : IRuterServis
     {
-        public IRuterRepozitorijum ruteri = new RuterRepozitorijum();
-        public IDNServis dns = new DNSServis();
-        public bool PrimiPaket(string serijskiBroj, MrezniPaket paket)
+        public IRuterRepozitorijum ruteri;
+        public IDNServis dns;
+
+        public RuterServis()
+        {
+        }
+
+        public RuterServis(IRuterRepozitorijum ruteri, IDNServis dns)
+        {
+            this.ruteri = ruteri;
+            this.dns = dns; ;
+        }
+
+        public bool PrimiPaket(string serijskiBroj, MrezniPaket? paket)
         {
             var ruteri_lista = ruteri.DobaviRutere().ToList();
             foreach(Ruter r in ruteri_lista)
             {
                 if (r.SerijskiBrojProizvodjaca == serijskiBroj)
-                    r.BrojPoslatihPaketa++;
+                {
+                    r.BrojPoslatihPaketa++;                   
+                    return dns.PrimiPaket(paket);
+                }
             }
-            dns.PrimiPaket(paket);
-            return true;
+
+            return false;
         }
     }
 }
