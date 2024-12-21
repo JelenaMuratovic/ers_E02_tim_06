@@ -71,6 +71,43 @@ namespace Testovi.Servisi.ServisiRaspodelePaketa
             Assert.That(paketiLista[2].IPAdresaPosiljaoca, Is.EqualTo("192.168.0.3"));
         }
 
+        [Test]
+        [TestCase("192.168.0.1")]
+        public void RasporediPaketeRacunarima_NemaPaketa_VracaFalse(string ipAdresa)
+        {
+            var racunariLista = new List<Racunar>
+            {
+                new Racunar("",0,0,0,ipAdresa),
+            };
+
+            var paketiLista = new List<MrezniPaket>(); 
+
+            _racunariRepozitorijum.Setup(r => r.DobaviRacunare()).Returns(racunariLista);
+            _paketRepozitorijum.Setup(p => p.DobaviPakete()).Returns(paketiLista);
+
+            var rezultat = _rasporediPaketeServis.RasporediPaketeRacunarima();
+
+            Assert.That(rezultat, Is.False);
+        }
+
+        [Test]
+        public void RasporediPaketeRacunarima_NemaRacunara_VracaFalse()
+        {
+            var racunariLista = new List<Racunar>();
+
+            var paketiLista = new List<MrezniPaket>
+            {
+                new MrezniPaket(0,0,0,"","")
+            };
+
+            _racunariRepozitorijum.Setup(r => r.DobaviRacunare()).Returns(racunariLista);
+            _paketRepozitorijum.Setup(p => p.DobaviPakete()).Returns(paketiLista);
+
+            var rezultat = _rasporediPaketeServis.RasporediPaketeRacunarima();
+
+            Assert.That(rezultat, Is.False);
+        }
+
 
     }
     

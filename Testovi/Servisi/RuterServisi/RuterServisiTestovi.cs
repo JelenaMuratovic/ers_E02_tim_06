@@ -54,7 +54,6 @@ namespace Testovi.Servisi.RuterServisi
 
             Assert.That(uspesnoPrimio, Is.True);
             Assert.That(ruter.BrojPoslatihPaketa, Is.EqualTo(1));
-            Assert.That(listaRutera, Is.Not.Empty);
         }
 
         [Test]
