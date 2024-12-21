@@ -10,11 +10,18 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class RasporediPakete : IRasporediPakete
+    public class RasporediPaketeServis : IRasporediPakete
     {
 
-        IRacunarRepozitorijum racunari = new RacunarRepozitorijum();
-        IPaketRepozitorijum paketi = new PaketRepozitorijum();
+        IRacunarRepozitorijum racunari;
+        IPaketRepozitorijum paketi;
+
+        public RasporediPaketeServis(IRacunarRepozitorijum racunari, IPaketRepozitorijum paketi)
+        {
+            this.racunari = racunari;
+            this.paketi = paketi;
+        }
+
         bool IRasporediPakete.RasporediPaketeRacunarima()
         {
             var racunari_lista = racunari.DobaviRacunare().ToList();

@@ -60,10 +60,8 @@ namespace Testovi.Servisi.RuterServisi
         [Test]
         public void ObjekatJeNull()
         {
-            // Simuliranje ponasanja nad servisom sa laziranim objektom zavisnosti
             bool uspesno = _ruterServis.PrimiPaket("123", null);
 
-            // Provera da li je ocekivani rezultat jednak rezultatu testa
             Assert.That(uspesno, Is.False);
         }
     }

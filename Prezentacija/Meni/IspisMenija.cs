@@ -27,7 +27,7 @@ namespace Prezentacija.Meni
         private ISlanjePaketaServis slanjePaketaServis;
         private IAutentifikacijaServis autentifikacija;
         private IEvidencijaServis fileUpis;
-        private IRasporediPakete rasporediPaketeServis = new RasporediPakete();
+        private IRasporediPakete rasporediPaketeServis = new RasporediPaketeServis();
         private IKreiranjePaketaServis kreiranjePaketa;
         private IKreiranjeRacunaraServis kreiranjeRacunara = new KreirajRacunar();
         private IKreiranjeRuteraServis kreiranjeRutera = new KreirajRuter();
