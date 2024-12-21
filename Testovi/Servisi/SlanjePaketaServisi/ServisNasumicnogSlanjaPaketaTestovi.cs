@@ -1,0 +1,100 @@
+﻿using Domain.Models;
+using Domain.Repozitorijumi.PaketiRepozitorijum;
+using Domain.Repozitorijumi.RuteriRepozitorijum;
+using Domain.Services;
+using Moq;
+using NUnit.Framework;
+using Services;
+using Services.RuterServisi;
+using Services.SlanjePaketaServisi;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Testovi.Servisi.SlanjePaketaServisi
+{
+    [TestFixture]
+    public class ServisNasumicnogSlanjaPaketaTestovi
+    {
+        Mock<IRuterServis> _ruterServis;
+        Mock<IRuterRepozitorijum> _ruteriRepozitorijum;
+        Mock<IPaketRepozitorijum> _paketiRepozitorijum;
+
+        ISlanjePaketaServis _slanjePaketaServis;
+
+        public ServisNasumicnogSlanjaPaketaTestovi()
+        {
+            _ruterServis = new Mock<IRuterServis>();
+            _ruteriRepozitorijum = new Mock<IRuterRepozitorijum>();
+            _paketiRepozitorijum = new Mock<IPaketRepozitorijum>();
+
+            _slanjePaketaServis = new SlanjePaketaNasumicnoServis(_ruterServis.Object, _ruteriRepozitorijum.Object, _paketiRepozitorijum.Object);
+        }
+
+        [SetUp]
+        public void Setup()
+        {
+            _ruterServis = new Mock<IRuterServis>();
+            _ruteriRepozitorijum = new Mock<IRuterRepozitorijum>();
+            _paketiRepozitorijum = new Mock<IPaketRepozitorijum>();
+
+            _slanjePaketaServis = new SlanjePaketaNasumicnoServis(_ruterServis.Object, _ruteriRepozitorijum.Object, _paketiRepozitorijum.Object);
+            _ruterServis.Setup(x => x.PrimiPaket("", new MrezniPaket())).Verifiable();
+        }
+
+        [Test]
+        [TestCase("123", "124", "125")]
+        public void PaketRasporedjenNaRuter_vracaTrue(string serijskiBr1, string serijskiBr2, string serijskiBr3)
+        {
+            var ruteriLista = new List<Ruter>()
+            {
+                new Ruter(serijskiBr1,0,0,0),
+                new Ruter(serijskiBr2,0,0,0),
+                new Ruter(serijskiBr3,0,0,0)
+            };
+
+            var paketiLista = new List<MrezniPaket>()
+            {
+                new MrezniPaket(0,0,0,"",""),
+                new MrezniPaket(0,0,0,"",""),
+                new MrezniPaket(0,0,0,"","")
+            };
+
+            _ruteriRepozitorijum.Setup(r => r.DobaviRutere()).Returns(ruteriLista);
+            _paketiRepozitorijum.Setup(p => p.DobaviPakete()).Returns(paketiLista);
+
+            var primljeniSerijskiBrojevi = new List<string>();
+            _ruterServis.Setup(r => r.PrimiPaket(It.IsAny<string>(), It.IsAny<MrezniPaket>())).Callback<string, MrezniPaket>((serijskiBroj, paket) => primljeniSerijskiBrojevi.Add(serijskiBroj));
+
+            var rezultat = _slanjePaketaServis.PosaljiPakete();
+
+            Assert.That(rezultat, Is.True);
+            Assert.That(paketiLista.All(p => p.Poslat), Is.True);
+            Assert.That(primljeniSerijskiBrojevi.All(sb => ruteriLista.Any(r => r.SerijskiBrojProizvodjaca == sb)), Is.True);
+
+        }
+
+        [Test]
+        public void RasporediPaketeNaRutere_NemaRutera_vracaFalse()
+        {
+            var ruteriLista = new List<Ruter>();
+
+            var paketiLista = new List<MrezniPaket>()
+            {                
+                new MrezniPaket(0,0,0,"",""),
+                new MrezniPaket(0,0,0,"",""),
+                new MrezniPaket(0,0,0,"","")
+            };
+
+            _ruteriRepozitorijum.Setup(r => r.DobaviRutere()).Returns(ruteriLista);
+            _paketiRepozitorijum.Setup(p => p.DobaviPakete()).Returns(paketiLista);
+
+            var rezultat = _slanjePaketaServis.PosaljiPakete();
+
+            Assert.That(rezultat, Is.False);
+        }
+    }
+}

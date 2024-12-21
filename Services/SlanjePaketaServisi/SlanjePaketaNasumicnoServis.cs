@@ -20,9 +20,22 @@ namespace Services.SlanjePaketaServisi
         public SlanjePaketaNasumicnoServis()
         {
         }
+
+        public SlanjePaketaNasumicnoServis(IRuterServis ruterServis, IRuterRepozitorijum ruteri, IPaketRepozitorijum paketi)
+        {
+            this.ruterServis = ruterServis;
+            this.ruteri = ruteri;
+            this.paketi = paketi;
+        }
+
         public bool PosaljiPakete()
         {
             var ruteri_lista = ruteri.DobaviRutere().ToList();
+            if (ruteri_lista.Count() == 0 || ruteri_lista == null)
+            {
+                return false;
+            }
+
             foreach (MrezniPaket paket in paketi.DobaviPakete())
             {
                 paket.Poslat = true;
