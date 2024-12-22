@@ -13,12 +13,11 @@ namespace Services.PregledEvidencijeServisi
     {
         public string Pregled(IEnumerable<MrezniPaket> listaPaketa)
         {
-            Console.WriteLine("uso");
             string imeFajla = "evidencija.xml";
+            StreamWriter writer = new StreamWriter(imeFajla);
             try
             {
                 XmlSerializer serialiser = new XmlSerializer(typeof(MrezniPaket));
-                StreamWriter writer = new StreamWriter(imeFajla, true);
                 foreach (MrezniPaket mp in listaPaketa)
                 {
                     serialiser.Serialize(writer, mp);
@@ -28,6 +27,13 @@ namespace Services.PregledEvidencijeServisi
             catch(Exception ex)
             {
                 return "Greska pri upisivanju u xml fajl: " + ex.Message;
+            }
+            finally
+            {
+                if (writer != null)
+                {
+                    writer.Close();
+                }
             }
         }
     }
