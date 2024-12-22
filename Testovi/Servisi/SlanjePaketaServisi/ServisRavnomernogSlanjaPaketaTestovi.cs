@@ -37,8 +37,12 @@ namespace Testovi.Servisi.SlanjePaketaServisi
             _ruteriRepozitorijum = new Mock<IRuterRepozitorijum>();
             _paketiRepozitorijum = new Mock<IPaketRepozitorijum>();
 
-            _slanjePaketaServis = new SlanjePaketaNasumicnoServis(_ruterServis.Object);
             _ruterServis.Setup(x => x.PrimiPaket("", new MrezniPaket())).Verifiable();
+            _slanjePaketaServis = new SlanjePaketaNasumicnoServis(_ruterServis.Object)
+            {
+                ruteri = _ruteriRepozitorijum.Object,
+                paketi = _paketiRepozitorijum.Object
+            };
         }
 
         [Test]

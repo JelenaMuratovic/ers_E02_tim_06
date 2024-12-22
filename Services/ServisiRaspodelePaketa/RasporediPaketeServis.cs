@@ -13,10 +13,10 @@ namespace Services
     public class RasporediPaketeServis : IRasporediPakete
     {
 
-        IRacunarRepozitorijum racunari = new RacunarRepozitorijum();
-        IPaketRepozitorijum paketi = new PaketRepozitorijum();
+        public IRacunarRepozitorijum racunari = new RacunarRepozitorijum();
+        public IPaketRepozitorijum paketi = new PaketRepozitorijum();
 
-        bool IRasporediPakete.RasporediPaketeRacunarima()
+        public bool RasporediPaketeRacunarima()
         {
             var racunari_lista = racunari.DobaviRacunare().ToList();
             var paketi_lista = paketi.DobaviPakete().ToList();

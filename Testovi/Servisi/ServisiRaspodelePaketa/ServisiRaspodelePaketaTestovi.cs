@@ -38,7 +38,11 @@ namespace Testovi.Servisi.ServisiRaspodelePaketa
             _racunariRepozitorijum = new Mock<IRacunarRepozitorijum>();
             _paketRepozitorijum = new Mock<IPaketRepozitorijum>();
 
-            _rasporediPaketeServis = new RasporediPaketeServis();
+            _rasporediPaketeServis = new RasporediPaketeServis
+            {
+                racunari = _racunariRepozitorijum.Object,
+                paketi = _paketRepozitorijum.Object
+            };
         }
 
         [Test]
@@ -46,24 +50,24 @@ namespace Testovi.Servisi.ServisiRaspodelePaketa
         public void PaketiRasporedjeniNaRacunare_vracaTrue(string ipAdresa1, string ipAdresa2, string ipAdresa3)
         {
             var racunariLista = new List<Racunar>
-            {
-                new Racunar("",0,0,0,ipAdresa1),
-                new Racunar("",0,0,0,ipAdresa2),
-                new Racunar("",0,0,0,ipAdresa3)
-            };
+                    {
+                        new Racunar("",0,0,0,ipAdresa1),
+                        new Racunar("",0,0,0,ipAdresa2),
+                        new Racunar("",0,0,0,ipAdresa3)
+                    };
 
             var paketiLista = new List<MrezniPaket>
-            {
-                new MrezniPaket(0,0,0,"",""),
-                new MrezniPaket(0,0,0,"",""),
-                new MrezniPaket(0,0,0,"","")
-            };
+                    {
+                        new MrezniPaket(0,0,0,"",""),
+                        new MrezniPaket(0,0,0,"",""),
+                        new MrezniPaket(0,0,0,"","")
+                    };
 
             _racunariRepozitorijum.Setup(r => r.DobaviRacunare()).Returns(racunariLista);
             _paketRepozitorijum.Setup(p => p.DobaviPakete()).Returns(paketiLista);
 
             //racunariLista = _racunariRepozitorijum.Object.DobaviRacunare() as List<Racunar>;
-             
+
             var rezultat = _rasporediPaketeServis.RasporediPaketeRacunarima();
 
             Assert.That(rezultat, Is.True);
@@ -78,11 +82,11 @@ namespace Testovi.Servisi.ServisiRaspodelePaketa
         public void RasporediPaketeRacunarima_NemaPaketa_VracaFalse(string ipAdresa)
         {
             var racunariLista = new List<Racunar>
-            {
-                new Racunar("",0,0,0,ipAdresa),
-            };
+                    {
+                        new Racunar("",0,0,0,ipAdresa),
+                    };
 
-            var paketiLista = new List<MrezniPaket>(); 
+            var paketiLista = new List<MrezniPaket>();
 
             _racunariRepozitorijum.Setup(r => r.DobaviRacunare()).Returns(racunariLista);
             _paketRepozitorijum.Setup(p => p.DobaviPakete()).Returns(paketiLista);
@@ -98,9 +102,9 @@ namespace Testovi.Servisi.ServisiRaspodelePaketa
             var racunariLista = new List<Racunar>();
 
             var paketiLista = new List<MrezniPaket>
-            {
-                new MrezniPaket(0,0,0,"","")
-            };
+                    {
+                        new MrezniPaket(0,0,0,"","")
+                    };
 
             _racunariRepozitorijum.Setup(r => r.DobaviRacunare()).Returns(racunariLista);
             _paketRepozitorijum.Setup(p => p.DobaviPakete()).Returns(paketiLista);
@@ -112,5 +116,6 @@ namespace Testovi.Servisi.ServisiRaspodelePaketa
 
 
     }
-    
 }
+
+

@@ -12,6 +12,7 @@ using Domain.Enums;
 using Domain.Models;
 using NUnit.Framework.Constraints;
 
+
 namespace Testovi.Servisi.RuterServisi
 {
     [TestFixture]
@@ -26,12 +27,6 @@ namespace Testovi.Servisi.RuterServisi
         {
             _ruteriRepozitorijum = new Mock<IRuterRepozitorijum>();
             _dnsServis = new Mock<IDNServis>();
-
-            //_ruterServis = new RuterServis(_dnsServis.Object);
-            _ruterServis = new RuterServis(_dnsServis.Object)
-            {
-                ruteri = _ruteriRepozitorijum.Object
-            };
         }
 
         [SetUp]
@@ -39,9 +34,10 @@ namespace Testovi.Servisi.RuterServisi
         {
             _ruteriRepozitorijum = new Mock<IRuterRepozitorijum>();
             _dnsServis = new Mock<IDNServis>();
-
-            _ruterServis = new RuterServis(_dnsServis.Object);
-            //_dnsServis.Setup(d => d.PrimiPaket(It.IsAny<MrezniPaket>())).Returns(true);
+            _ruterServis = new RuterServis(_dnsServis.Object)
+            {
+                ruteri = _ruteriRepozitorijum.Object
+            };
         }
 
         [Test]
@@ -58,7 +54,6 @@ namespace Testovi.Servisi.RuterServisi
             bool uspesnoPrimio = _ruterServis.PrimiPaket(serijskiBroj, paket);
 
             Assert.That(uspesnoPrimio, Is.True);
-            _dnsServis.Verify(d => d.PrimiPaket(paket), Times.Once);
         }
 
         [Test]

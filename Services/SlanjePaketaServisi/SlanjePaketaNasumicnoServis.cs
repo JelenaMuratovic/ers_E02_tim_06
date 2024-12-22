@@ -14,9 +14,9 @@ namespace Services.SlanjePaketaServisi
     public class SlanjePaketaNasumicnoServis : ISlanjePaketaServis
     {
 
-        IRuterServis ruterServis;
-        IRuterRepozitorijum ruteri = new RuterRepozitorijum();
-        IPaketRepozitorijum paketi = new PaketRepozitorijum();
+        public IRuterServis ruterServis;
+        public IRuterRepozitorijum ruteri = new RuterRepozitorijum();
+        public IPaketRepozitorijum paketi = new PaketRepozitorijum();
 
         public SlanjePaketaNasumicnoServis(IRuterServis ruterServis)
         {
