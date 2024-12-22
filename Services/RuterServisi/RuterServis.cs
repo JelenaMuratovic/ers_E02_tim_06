@@ -12,17 +12,11 @@ namespace Services.RuterServisi
 {
     public class RuterServis : IRuterServis
     {
-        public IRuterRepozitorijum ruteri;
+        public IRuterRepozitorijum ruteri = new RuterRepozitorijum();
         public IDNServis dns;
-
-        public RuterServis()
+        public RuterServis(IDNServis dns)
         {
-        }
-
-        public RuterServis(IRuterRepozitorijum ruteri, IDNServis dns)
-        {
-            this.ruteri = ruteri;
-            this.dns = dns; ;
+            this.dns = dns;
         }
 
         public bool PrimiPaket(string serijskiBroj, MrezniPaket? paket)

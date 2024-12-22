@@ -12,16 +12,17 @@ namespace Prezentacija.KreiranjePaketa
 {
     public class KreirajPakete : IKreiranjePaketaServis
     {
-        IPaketRepozitorijum paketi = new PaketRepozitorijum();
+        //IPaketRepozitorijum paketi = new PaketRepozitorijum();
 
-        public KreirajPakete(IPaketRepozitorijum prethodniPaketi)
+        public KreirajPakete()
         {
-            paketi = prethodniPaketi;
+            //paketi = prethodniPaketi;
         }
 
         public IEnumerable<MrezniPaket> KreiranjePaketa(int brojPaketa)
         {
             MrezniPaket mp;
+            List<MrezniPaket> kreiraniPaketi = new List<MrezniPaket>();
             for (int i = 0; i < brojPaketa; i++)
             {
                 mp = new MrezniPaket(NasumicanSadrzajPaketa.GenerisiNasumicanProtokol(),
@@ -29,10 +30,11 @@ namespace Prezentacija.KreiranjePaketa
                     NasumicanSadrzajPaketa.GenerisiNasumicnuVelPodataka(),
                     NasumicanSadrzajPaketa.GenerisiNasumicanSadrzaj(),
                     NasumicanSadrzajPaketa.GenerisiNasumicnuIPAdresu());
-                paketi.DodajPaket(mp);
+                //paketi.DodajPaket(mp);
+                kreiraniPaketi.Add(mp);
             }
 
-            return paketi.DobaviPakete();
+            return kreiraniPaketi;
         }
     }
 }

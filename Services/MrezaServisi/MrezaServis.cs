@@ -19,7 +19,7 @@ namespace Services.MrezaServisi
         private IRacunarRepozitorijum racunari = new RacunarRepozitorijum();
         private IRuterRepozitorijum ruteri = new RuterRepozitorijum();
 
-        public MrezaServis(IAutentifikacijaServis auth, IEvidencijaServis fileUpis, ISlanjePaketaServis slanjePaketaServis, IDNServis dnsServis)
+        public MrezaServis(IAutentifikacijaServis auth, ISlanjePaketaServis slanjePaketaServis, IDNServis dnsServis)
         {
             this.auth = auth;
             this.slanjePaketaServis = slanjePaketaServis;

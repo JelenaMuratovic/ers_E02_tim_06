@@ -22,7 +22,7 @@ namespace Domain.Models
         }
         public override string? ToString()
         {
-            return "Protokol: " + Protokol + " " + "Header len: " + VelicinaZaglavlja + " App len: " + VelicinaDelaSaPodacima + " Data: " + Sadrzaj + "Destination IP addr: " + IPAdresaPrimaoca;
+            return "Protokol: " + Protokol + " " + "Header len: " + VelicinaZaglavlja + " App len: " + VelicinaDelaSaPodacima + " Data: " + Sadrzaj + " Destination IP addr: " + IPAdresaPrimaoca;
         }
 
         public MrezniPaket(MrezniProtokol protokol, int velicinaZaglavlja, int velicinaDelaSaPodacima, string sadrzaj, string iPAdresaPrimaoca)

@@ -24,19 +24,27 @@ namespace Prezentacija.Meni
         private IMrezaServis mrezaServis;
         //private readonly Korisnik korisnik;
         private IPaketRepozitorijum paketi = new PaketRepozitorijum();
-        private ISlanjePaketaServis slanjePaketaServis;
         private IAutentifikacijaServis autentifikacija;
-        private IEvidencijaServis fileUpis;
         private IRasporediPakete rasporediPaketeServis = new RasporediPaketeServis();
         private IKreiranjePaketaServis kreiranjePaketa;
         private IKreiranjeRacunaraServis kreiranjeRacunara = new KreirajRacunar();
         private IKreiranjeRuteraServis kreiranjeRutera = new KreirajRuter();
+        private IRuterServis ruterServis;
         private IDNServis dnsServis;
+        private IPregledEvidencijeServis pregledEvidencijeServis;
+        private IEvidencijaServis evidencijaServis;
+        private ISlanjePaketaServis slanjePaketaServis;
 
-        public IspisMenija(IMrezaServis mrezaServis)
+        public IspisMenija(IMrezaServis mrezaServis, IRuterServis ruterServis, IDNServis dnsServis, IPregledEvidencijeServis pregledEvidencijeServis, IEvidencijaServis evidencijaServis, ISlanjePaketaServis slanjePaketaServis)
         {
             this.mrezaServis = mrezaServis;
-            kreiranjePaketa = new KreirajPakete(paketi);
+            kreiranjePaketa = new KreirajPakete();
+            this.ruterServis = ruterServis;
+            this.dnsServis = dnsServis;
+            this.pregledEvidencijeServis = pregledEvidencijeServis;
+            this.evidencijaServis = evidencijaServis;
+            this.slanjePaketaServis = slanjePaketaServis;
+            
         }
 
         public void PrikaziMeni()
@@ -60,37 +68,36 @@ namespace Prezentacija.Meni
                         brojPaketa = Int32.Parse(Console.ReadLine() ?? "");
                         Console.WriteLine("1. Salji nasumicno\n2. Salji ravnomerno\n");
                         tipSlanja = Int32.Parse(Console.ReadLine() ?? "");
-                        //mrezaServis.KreirajPakete(brojPaketa);
                        
                         if (tipSlanja == 2)
                         {
-                            slanjePaketaServis = new SlanjePaketaRavnomernoServis();
+                            slanjePaketaServis = new SlanjePaketaRavnomernoServis(ruterServis);
                         }
                         else
                         {
-                            slanjePaketaServis = new SlanjePaketaNasumicnoServis();
+                            slanjePaketaServis = new SlanjePaketaNasumicnoServis(ruterServis);
                         }
-                        mrezaServis = new MrezaServis(autentifikacija, fileUpis, slanjePaketaServis, dnsServis);
-                        //if (kreiranjePaketa.KreiranjePaketa(brojPaketa) == null)
-                        //    Console.WriteLine("nemas pakete");
-                        //else
-                        //    Console.WriteLine("kreirani su paketi");
+                        mrezaServis = new MrezaServis(autentifikacija, slanjePaketaServis, dnsServis);
                         List<MrezniPaket> kreiraniPaketi = kreiranjePaketa.KreiranjePaketa(brojPaketa) as List<MrezniPaket>;
+                        foreach(MrezniPaket mp in kreiraniPaketi)
+                        {
+                            paketi.DodajPaket(mp);
+                        }
                         rasporediPaketeServis.RasporediPaketeRacunarima();
                         mrezaServis.PosaljiPakete();
-                        //kreiraniPaketi.Clear();
                         break;
                     case '2':
-                        //PregledZapisaNaSajtu;
-                        dnsServis = new DNSServis(new PregledEvidencijeKonzolaServis());
-                        mrezaServis = new MrezaServis(autentifikacija, fileUpis, slanjePaketaServis, dnsServis);
+                        pregledEvidencijeServis = new PregledEvidencijeKonzolaServis();
+                        dnsServis = new DNSServis(pregledEvidencijeServis, evidencijaServis);
+                        mrezaServis = new MrezaServis(autentifikacija, slanjePaketaServis, dnsServis);
                         if(mrezaServis.PregledPaketa(paketi.DobaviPakete()) == "")
                             Console.WriteLine("lista je prazna");
                         Console.WriteLine(mrezaServis.PregledPaketa(paketi.DobaviPakete()));
                         break;
                     case '3':
-                        dnsServis = new DNSServis(new PregledEvidencijeXMLServis());
-                        mrezaServis = new MrezaServis(autentifikacija, fileUpis, slanjePaketaServis, dnsServis);
+                        pregledEvidencijeServis = new PregledEvidencijeXMLServis();
+                        dnsServis = new DNSServis(pregledEvidencijeServis, evidencijaServis);
+                        mrezaServis = new MrezaServis(autentifikacija, slanjePaketaServis, dnsServis);
                         Console.WriteLine(mrezaServis.PregledPaketa(paketi.DobaviPakete()));
                         break;
                     case '4':
@@ -99,10 +106,8 @@ namespace Prezentacija.Meni
                             Console.WriteLine("\nUspesno ste dodali racunar");
                         else
                             Console.WriteLine("\nRacunar nije dodat");
-                        //Console.WriteLine(mrezaServis.PregledRacunara());
                         break;
                     case '5':
-                        //ne radi
                         Console.WriteLine("Unesite serijski broj racunara kojeg zelite da obrisete: ");
                         Console.WriteLine(mrezaServis.PregledRacunara());
                         string serijskiBroj = Console.ReadLine();

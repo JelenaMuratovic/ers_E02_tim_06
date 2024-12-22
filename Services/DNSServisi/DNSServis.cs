@@ -11,16 +11,14 @@ namespace Services.DNSServisi
 {
     public class DNSServis : IDNServis
     {
-        IEvidencijaServis evidencija = new FileEvidencijaServis();
+        IEvidencijaServis evidencija;
         IPregledEvidencijeServis pregledEvidencije;
 
-        public DNSServis()
-        {
-        }
 
-        public DNSServis(IPregledEvidencijeServis pregledEvidencije)
+        public DNSServis(IPregledEvidencijeServis pregledEvidencije, IEvidencijaServis evidencija)
         {
             this.pregledEvidencije = pregledEvidencije;
+            this.evidencija = evidencija;
         }
 
         public string Evidentiraj(IEnumerable<MrezniPaket> listaPaketa)

@@ -14,18 +14,13 @@ namespace Services.SlanjePaketaServisi
     public class SlanjePaketaNasumicnoServis : ISlanjePaketaServis
     {
 
-        IRuterServis ruterServis = new RuterServis();
+        IRuterServis ruterServis;
         IRuterRepozitorijum ruteri = new RuterRepozitorijum();
         IPaketRepozitorijum paketi = new PaketRepozitorijum();
-        public SlanjePaketaNasumicnoServis()
-        {
-        }
 
-        public SlanjePaketaNasumicnoServis(IRuterServis ruterServis, IRuterRepozitorijum ruteri, IPaketRepozitorijum paketi)
+        public SlanjePaketaNasumicnoServis(IRuterServis ruterServis)
         {
             this.ruterServis = ruterServis;
-            this.ruteri = ruteri;
-            this.paketi = paketi;
         }
 
         public bool PosaljiPakete()
