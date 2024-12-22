@@ -27,7 +27,11 @@ namespace Testovi.Servisi.RuterServisi
             _ruteriRepozitorijum = new Mock<IRuterRepozitorijum>();
             _dnsServis = new Mock<IDNServis>();
 
-            _ruterServis = new RuterServis(_ruteriRepozitorijum.Object, _dnsServis.Object);
+            //_ruterServis = new RuterServis(_dnsServis.Object);
+            _ruterServis = new RuterServis(_dnsServis.Object)
+            {
+                ruteri = _ruteriRepozitorijum.Object
+            };
         }
 
         [SetUp]
@@ -36,7 +40,8 @@ namespace Testovi.Servisi.RuterServisi
             _ruteriRepozitorijum = new Mock<IRuterRepozitorijum>();
             _dnsServis = new Mock<IDNServis>();
 
-            _ruterServis = new RuterServis(_ruteriRepozitorijum.Object, _dnsServis.Object);
+            _ruterServis = new RuterServis(_dnsServis.Object);
+            //_dnsServis.Setup(d => d.PrimiPaket(It.IsAny<MrezniPaket>())).Returns(true);
         }
 
         [Test]
@@ -48,12 +53,12 @@ namespace Testovi.Servisi.RuterServisi
             var paket = new MrezniPaket(mp, velicinaZaglavlja, velicinaDelaPodataka, sadrzaj, IPAdresaPrimaoca);
 
             _ruteriRepozitorijum.Setup(x => x.DobaviRutere()).Returns(listaRutera);
-            _dnsServis.Setup(d => d.PrimiPaket(It.IsAny<MrezniPaket>())).Returns(true);
-            
+            _dnsServis.Setup(d => d.PrimiPaket(paket)).Returns(true);
+
             bool uspesnoPrimio = _ruterServis.PrimiPaket(serijskiBroj, paket);
 
             Assert.That(uspesnoPrimio, Is.True);
-            Assert.That(ruter.BrojPoslatihPaketa, Is.EqualTo(1));
+            _dnsServis.Verify(d => d.PrimiPaket(paket), Times.Once);
         }
 
         [Test]

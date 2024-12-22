@@ -15,6 +15,7 @@ namespace Services
 
         IRacunarRepozitorijum racunari = new RacunarRepozitorijum();
         IPaketRepozitorijum paketi = new PaketRepozitorijum();
+
         bool IRasporediPakete.RasporediPaketeRacunarima()
         {
             var racunari_lista = racunari.DobaviRacunare().ToList();

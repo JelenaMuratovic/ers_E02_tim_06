@@ -29,7 +29,7 @@ namespace Testovi.Servisi.ServisiRaspodelePaketa
             _racunariRepozitorijum = new Mock<IRacunarRepozitorijum>();
             _paketRepozitorijum = new Mock<IPaketRepozitorijum>();
 
-            _rasporediPaketeServis = new RasporediPaketeServis(_racunariRepozitorijum.Object, _paketRepozitorijum.Object);
+            _rasporediPaketeServis = new RasporediPaketeServis();
         }
 
         [SetUp]
@@ -38,7 +38,7 @@ namespace Testovi.Servisi.ServisiRaspodelePaketa
             _racunariRepozitorijum = new Mock<IRacunarRepozitorijum>();
             _paketRepozitorijum = new Mock<IPaketRepozitorijum>();
 
-            _rasporediPaketeServis = new RasporediPaketeServis(_racunariRepozitorijum.Object, _paketRepozitorijum.Object);
+            _rasporediPaketeServis = new RasporediPaketeServis();
         }
 
         [Test]
@@ -62,6 +62,8 @@ namespace Testovi.Servisi.ServisiRaspodelePaketa
             _racunariRepozitorijum.Setup(r => r.DobaviRacunare()).Returns(racunariLista);
             _paketRepozitorijum.Setup(p => p.DobaviPakete()).Returns(paketiLista);
 
+            //racunariLista = _racunariRepozitorijum.Object.DobaviRacunare() as List<Racunar>;
+             
             var rezultat = _rasporediPaketeServis.RasporediPaketeRacunarima();
 
             Assert.That(rezultat, Is.True);

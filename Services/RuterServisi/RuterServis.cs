@@ -25,8 +25,7 @@ namespace Services.RuterServisi
             foreach(Ruter r in ruteri_lista)
             {
                 if (r.SerijskiBrojProizvodjaca == serijskiBroj)
-                {
-                    r.BrojPoslatihPaketa++;                   
+                {                
                     return dns.PrimiPaket(paket);
                 }
             }

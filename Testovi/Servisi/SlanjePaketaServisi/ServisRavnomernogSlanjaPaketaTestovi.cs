@@ -62,8 +62,8 @@ namespace Testovi.Servisi.SlanjePaketaServisi
             _ruteriRepozitorijum.Setup(r => r.DobaviRutere()).Returns(ruteriLista);
             _paketiRepozitorijum.Setup(p => p.DobaviPakete()).Returns(paketiLista);
 
-
             var rezultat = _slanjePaketaServis.PosaljiPakete();
+
 
             Assert.That(rezultat, Is.True);
             Assert.That(paketiLista.All(p => p.Poslat), Is.True);

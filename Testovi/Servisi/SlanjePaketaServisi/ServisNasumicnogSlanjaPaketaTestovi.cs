@@ -42,7 +42,7 @@ namespace Testovi.Servisi.SlanjePaketaServisi
             _paketiRepozitorijum = new Mock<IPaketRepozitorijum>();
 
             _slanjePaketaServis = new SlanjePaketaNasumicnoServis(_ruterServis.Object);
-            _ruterServis.Setup(x => x.PrimiPaket("", new MrezniPaket())).Verifiable();
+            _ruterServis.Setup(x => x.PrimiPaket(It.IsAny<string>(), It.IsAny<MrezniPaket>())).Verifiable();
         }
 
         [Test]
