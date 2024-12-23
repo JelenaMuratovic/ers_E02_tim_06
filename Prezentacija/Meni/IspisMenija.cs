@@ -52,7 +52,7 @@ namespace Prezentacija.Meni
             bool kraj = false;
             while (!kraj)
             {
-                Console.WriteLine("\n1. Salji pakete\n2. Pregled paketa\n3. Sacuvaj pakete (u .xml fajl)\n4. Dodaj racunar\n5. Obrisi racunar\n6. Dodaj ruter\n7.Izadji iz programa");
+                Console.WriteLine("\n1. Salji pakete\n2. Pregled paketa\n3. Sacuvaj pakete (u .xml fajl)\n4. Dodaj racunar\n5. Obrisi racunar\n6. Dodaj ruter\n7. Izadji iz programa");
                 Console.Write("Opcija: ");
                 string? opcija = Console.ReadLine();
 

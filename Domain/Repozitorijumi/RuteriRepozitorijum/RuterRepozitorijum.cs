@@ -13,10 +13,6 @@ namespace Domain.Repozitorijumi.RuteriRepozitorijum
     {
         private static List<Ruter> ruteri;
 
-        public RuterRepozitorijum()
-        {
-        }
-
         static RuterRepozitorijum()
         {
             ruteri =

@@ -22,9 +22,5 @@ namespace Prezentacija.NacinSlanjaPaketa
             this.tipSlanja = tipSlanja;
         }
 
-        public void KreirajTipSlanja(int brojPaketa)
-        {
-            
-        }
     }
 }

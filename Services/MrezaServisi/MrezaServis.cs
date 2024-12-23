@@ -16,8 +16,8 @@ namespace Services.MrezaServisi
         private IAutentifikacijaServis auth;
         private ISlanjePaketaServis slanjePaketaServis;
         private IDNServis dnsServis;
-        private IRacunarRepozitorijum racunari = new RacunarRepozitorijum();
-        private IRuterRepozitorijum ruteri = new RuterRepozitorijum();
+        public IRacunarRepozitorijum Racunari { get; set; } = new RacunarRepozitorijum();
+        public IRuterRepozitorijum Ruteri { get; set; } = new RuterRepozitorijum();
 
         public MrezaServis(IAutentifikacijaServis auth, ISlanjePaketaServis slanjePaketaServis, IDNServis dnsServis)
         {
@@ -25,20 +25,20 @@ namespace Services.MrezaServisi
             this.slanjePaketaServis = slanjePaketaServis;
             this.dnsServis = dnsServis;
         }
-
+       
         public bool DodajRacunar(Racunar racunar)
         {
-            return racunari.DodajRacunar(racunar);
+            return Racunari.DodajRacunar(racunar);
         }
 
         public bool DodajRuter(Ruter ruter)
         {
-            return ruteri.DodajRuter(ruter);
+            return Ruteri.DodajRuter(ruter);
         }
 
         public bool ObrisiRacunar(string serijskiBroj)
         {
-            return racunari.ObrisiRacunar(serijskiBroj);
+            return Racunari.ObrisiRacunar(serijskiBroj);
         }
 
         public bool PosaljiPakete()
@@ -57,11 +57,11 @@ namespace Services.MrezaServisi
         }
         public string? PregledRacunara()
         {
-            return "racunari:\n" + racunari.ToString();
+            return "racunari:\n" + Racunari.ToString();
         }
         public string? PregledRutera()
         {
-            return "ruteri:\n" + ruteri.ToString();
+            return "ruteri:\n" + Ruteri.ToString();
         }
     }
 }

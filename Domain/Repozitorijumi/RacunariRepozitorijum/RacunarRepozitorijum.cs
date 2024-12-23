@@ -13,10 +13,6 @@ namespace Domain.Repozitorijumi.RacunariRepozitorijum
     {
         private static List<Racunar> racunari;
 
-        public RacunarRepozitorijum()
-        {
-        }
-
         static RacunarRepozitorijum()
         {
             racunari =

@@ -12,11 +12,8 @@ namespace Prezentacija.KreiranjePaketa
 {
     public class KreirajPakete : IKreiranjePaketaServis
     {
-        //IPaketRepozitorijum paketi = new PaketRepozitorijum();
-
         public KreirajPakete()
         {
-            //paketi = prethodniPaketi;
         }
 
         public IEnumerable<MrezniPaket> KreiranjePaketa(int brojPaketa)
@@ -30,7 +27,6 @@ namespace Prezentacija.KreiranjePaketa
                     NasumicanSadrzajPaketa.GenerisiNasumicnuVelPodataka(),
                     NasumicanSadrzajPaketa.GenerisiNasumicanSadrzaj(),
                     NasumicanSadrzajPaketa.GenerisiNasumicnuIPAdresu());
-                //paketi.DodajPaket(mp);
                 kreiraniPaketi.Add(mp);
             }
 
