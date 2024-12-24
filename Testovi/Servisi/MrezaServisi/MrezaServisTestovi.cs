@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Testovi.Servisi.MrezaServisi
 {
@@ -20,7 +21,8 @@ namespace Testovi.Servisi.MrezaServisi
         Mock<ISlanjePaketaServis> _slanjePaketaServis;
         Mock<IDNServis> _dnsServis;
         Mock<IRacunarRepozitorijum> _racunariRepozitorijum;
-        Mock<IRuterRepozitorijum> _ruteriRepozitorijum; 
+        Mock<IRuterRepozitorijum> _ruteriRepozitorijum;
+        Mock<IPregledEvidencijeServis> _PregledEvidencijeServis;
 
         IMrezaServis _servis;
 
@@ -31,6 +33,7 @@ namespace Testovi.Servisi.MrezaServisi
             _dnsServis = new Mock<IDNServis>();
             _racunariRepozitorijum = new Mock<IRacunarRepozitorijum>();
             _ruteriRepozitorijum = new Mock<IRuterRepozitorijum>();
+            _PregledEvidencijeServis = new Mock<IPregledEvidencijeServis>();
 
             _servis = new MrezaServis(_authServis.Object, _slanjePaketaServis.Object, _dnsServis.Object);
         }
@@ -43,6 +46,7 @@ namespace Testovi.Servisi.MrezaServisi
             _dnsServis = new Mock<IDNServis>();
             _racunariRepozitorijum = new Mock<IRacunarRepozitorijum>();
             _ruteriRepozitorijum = new Mock<IRuterRepozitorijum>();
+            _PregledEvidencijeServis = new Mock<IPregledEvidencijeServis>();
 
             _servis = new MrezaServis(_authServis.Object, _slanjePaketaServis.Object, _dnsServis.Object)
             {
@@ -52,6 +56,8 @@ namespace Testovi.Servisi.MrezaServisi
 
             _authServis.Setup(p => p.Prijava(It.IsAny<string>(), It.IsAny<string>())).Verifiable();
             _slanjePaketaServis.Setup(p => p.PosaljiPakete()).Verifiable();
+            _dnsServis.Setup(d => d.Evidentiraj(It.IsAny<IEnumerable<MrezniPaket>>()))
+            .Returns((IEnumerable<MrezniPaket> paketi) => _PregledEvidencijeServis.Object.Pregled(paketi));
         }
 
         [Test]
@@ -120,6 +126,33 @@ namespace Testovi.Servisi.MrezaServisi
             Assert.That(rezultat, Is.True);
             Assert.That(lista.Count, Is.EqualTo(2));
             _racunariRepozitorijum.Verify(r => r.DobaviRacunare(), Times.Once);
+        }
+
+        [Test]
+        public void EvidentirajVracaOdgovarajuciString()
+        {
+            var listaPaketa = new List<MrezniPaket>
+            {
+                new MrezniPaket(0,20,50,"data1","192.168.10.1"),
+                new MrezniPaket(0,10,30,"data2","192.168.10.2"),
+                new MrezniPaket(0,20,20,"data3","192.168.10.3")
+            };
+
+            var ocekivaniString =
+                "Protokol: SMTP Header len: 20 App len: 50 Data: data1 Destination IP addr: 192.168.10.1\n" +
+                "Protokol: SMTP Header len: 20 App len: 50 Data: data1 Destination IP addr: 192.168.10.1\n" +
+                "Protokol: SMTP Header len: 20 App len: 50 Data: data1 Destination IP addr: 192.168.10.1\n";
+
+            _PregledEvidencijeServis
+                .Setup(p => p.Pregled(It.IsAny<IEnumerable<MrezniPaket>>()))
+                .Returns(ocekivaniString);
+
+            var rezultat = _servis.PregledPaketa(listaPaketa);
+
+            Assert.That(rezultat, Is.EqualTo(ocekivaniString));
+
+            _dnsServis.Verify(d => d.Evidentiraj(listaPaketa), Times.Once);
+            _PregledEvidencijeServis.Verify(p => p.Pregled(listaPaketa), Times.Once);
         }
     }
 }
