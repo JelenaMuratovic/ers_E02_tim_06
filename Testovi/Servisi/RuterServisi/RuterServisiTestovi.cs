@@ -48,6 +48,7 @@ namespace Testovi.Servisi.RuterServisi
             bool uspesnoPrimio = _ruterServis.PrimiPaket(serijskiBroj, paket);
 
             Assert.That(uspesnoPrimio, Is.True);
+            Assert.That(ruter.BrojPaketa, Is.EqualTo(1));
         }
 
         [Test]

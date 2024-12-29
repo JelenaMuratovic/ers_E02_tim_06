@@ -32,7 +32,7 @@ namespace Testovi.Servisi.SlanjePaketaServisi
             _ruteriRepozitorijum = new Mock<IRuterRepozitorijum>();
             _paketiRepozitorijum = new Mock<IPaketRepozitorijum>();
 
-            _ruterServis.Setup(x => x.PrimiPaket("", new MrezniPaket())).Verifiable();
+            //_ruterServis.Setup(x => x.PrimiPaket("", new MrezniPaket())).Verifiable();
             _slanjePaketaServis = new SlanjePaketaNasumicnoServis(_ruterServis.Object)
             {
                 ruteri = _ruteriRepozitorijum.Object,
@@ -51,8 +51,8 @@ namespace Testovi.Servisi.SlanjePaketaServisi
                 new Ruter(serijskiBr3,0,0,0)
             };
             ruteriLista[0].BrojPaketa = 1;
-            ruteriLista[0].BrojPaketa = 3;
-            ruteriLista[0].BrojPaketa = 3;
+            ruteriLista[1].BrojPaketa = 3;
+            ruteriLista[2].BrojPaketa = 1;
 
             var paketiLista = new List<MrezniPaket>()
             {
@@ -64,12 +64,24 @@ namespace Testovi.Servisi.SlanjePaketaServisi
             _ruteriRepozitorijum.Setup(r => r.DobaviRutere()).Returns(ruteriLista);
             _paketiRepozitorijum.Setup(p => p.DobaviPakete()).Returns(paketiLista);
 
-            var rezultat = _slanjePaketaServis.PosaljiPakete();
+            _ruterServis.Setup(x => x.PrimiPaket(It.IsAny<string>(), It.IsAny<MrezniPaket>()))
+                .Callback<string, MrezniPaket>((serijskiBroj, paket) =>
+                {
+                    var ruter = ruteriLista.OrderBy(r => r.BrojPaketa).FirstOrDefault();
+                    if (ruter != null)
+                    {
+                        ruter.BrojPaketa++;
+                    }
+                });
+
+            var rezultat = _slanjePaketaServis.PosaljiPakete(); 
 
 
             Assert.That(rezultat, Is.True);
             Assert.That(paketiLista.All(p => p.Poslat), Is.True);
             Assert.That(ruteriLista[0].BrojPaketa, Is.EqualTo(3));
+            Assert.That(ruteriLista[1].BrojPaketa, Is.EqualTo(3));
+            Assert.That(ruteriLista[2].BrojPaketa, Is.EqualTo(2));
 
         }
 
