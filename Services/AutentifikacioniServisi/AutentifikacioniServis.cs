@@ -1,23 +1,16 @@
 ﻿using Domain.Models;
+using Domain.Repozitorijumi.KorisniciRepozitorijum;
 using Domain.Services;
 
 namespace Services.AutentifikacioniServisi
 {
     public class AutentifikacioniServis : IAutentifikacijaServis
     {
-        private static readonly List<Korisnik> korisnici;
-
-        static AutentifikacioniServis()
-        {
-            korisnici =
-                [
-                    new("Neca", "suncano20", "Nevena Gatalo"),
-                    new("Jeca", "kisovito40", "Jelena Muratovic")
-                ];
-        }
+        private IKorisnikRepozitorijum korisniciRepozitorijum = new KorisnikRepozitorijum();
 
         public (bool, Korisnik) Prijava(string KorisnickoIme, string Lozinka)
         {
+            var korisnici = korisniciRepozitorijum.DobaviKorisnike();
             foreach (Korisnik k in korisnici)
             {
                 if (k.KorisnickoIme.Equals(KorisnickoIme) && k.Lozinka.Equals(Lozinka))
