@@ -4,6 +4,7 @@ using Domain.Repozitorijumi.RacunariRepozitorijum;
 using Domain.Services;
 using Moq;
 using NUnit.Framework;
+using Services.ServisiRaspodelePaketa;
 
 namespace Testovi.Servisi.ServisiRaspodelePaketa
 {
@@ -104,8 +105,6 @@ namespace Testovi.Servisi.ServisiRaspodelePaketa
 
             Assert.That(rezultat, Is.False);
         }
-
-
     }
 }
 

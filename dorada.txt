@@ -1,7 +1,0 @@
-1. kada injektujemo repozitorijume onda moze new a kada injektujemo servise onda u konstruktoru prosledjujemo
-
-2. XML proslediti sve pakete koji su poslati u tom pozivu programa i upisati u fajl
-
-3. autentifikaciju promeniti
-
-4. ne mora testovi za nasumicno i ravnomerno slanje

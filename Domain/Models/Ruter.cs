@@ -8,6 +8,7 @@ namespace Domain.Models
         public int MaxBrzinaPrenosaPodataka { get; set; }
         public int BrojLANPrikljucka { get; set; }
         public VrstaRutera VrstaRutera { get; set; }
+        public int BrojPaketa { get; set; }
 
         public Ruter(string serijskiBrojProizvodjaca, int maxBrzinaPrenosaPodataka, int brojLANPrikljucka, VrstaRutera vrstaRutera)
         {
@@ -15,6 +16,11 @@ namespace Domain.Models
             MaxBrzinaPrenosaPodataka = maxBrzinaPrenosaPodataka;
             BrojLANPrikljucka = brojLANPrikljucka;
             VrstaRutera = vrstaRutera;
+            BrojPaketa = 0;
+        }
+        public override string? ToString()
+        {
+            return SerijskiBrojProizvodjaca;
         }
     }
 

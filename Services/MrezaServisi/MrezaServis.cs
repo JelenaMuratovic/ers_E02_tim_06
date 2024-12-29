@@ -49,13 +49,13 @@ namespace Services.MrezaServisi
         {
             return auth.Prijava(KorisnickoIme, Lozinka);
         }
-        public string? PregledRacunara() //izmeniti
+        public IEnumerable<Racunar> PregledRacunara()
         {
-            return "racunari:\n" + Racunari.ToString();
+            return Racunari.DobaviRacunare();
         }
-        public string? PregledRutera()
+        public IEnumerable<Ruter> PregledRutera()
         {
-            return "ruteri:\n" + Ruteri.ToString();
+            return Ruteri.DobaviRutere();
         }
     }
 }

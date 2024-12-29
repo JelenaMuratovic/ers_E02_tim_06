@@ -50,6 +50,9 @@ namespace Testovi.Servisi.SlanjePaketaServisi
                 new Ruter(serijskiBr2,0,0,0),
                 new Ruter(serijskiBr3,0,0,0)
             };
+            ruteriLista[0].BrojPaketa = 1;
+            ruteriLista[0].BrojPaketa = 3;
+            ruteriLista[0].BrojPaketa = 3;
 
             var paketiLista = new List<MrezniPaket>()
             {
@@ -66,6 +69,7 @@ namespace Testovi.Servisi.SlanjePaketaServisi
 
             Assert.That(rezultat, Is.True);
             Assert.That(paketiLista.All(p => p.Poslat), Is.True);
+            Assert.That(ruteriLista[0].BrojPaketa, Is.EqualTo(3));
 
         }
 

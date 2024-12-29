@@ -41,5 +41,16 @@ namespace Domain.Repozitorijumi.RuteriRepozitorijum
             }
             return ruteri_ispis;
         }
+
+        public Ruter? DobaviRuterSNajmanjePaketa()
+        {
+            Ruter? min = ruteri.First();
+            foreach(Ruter r in ruteri)
+            {
+                if (r.BrojPaketa < min.BrojPaketa)
+                    min = r;
+            }
+            return min;
+        }
     }
 }

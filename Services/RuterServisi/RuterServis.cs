@@ -15,11 +15,14 @@ namespace Services.RuterServisi
 
         public bool PrimiPaket(string serijskiBroj, MrezniPaket? paket)
         {
+            if (paket == null)
+                return false;
             var ruteri_lista = ruteri.DobaviRutere().ToList();
             foreach (Ruter r in ruteri_lista)
             {
                 if (r.SerijskiBrojProizvodjaca == serijskiBroj)
                 {
+                    r.BrojPaketa++;
                     return dns.PrimiPaket(paket);
                 }
             }

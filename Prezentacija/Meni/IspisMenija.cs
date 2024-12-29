@@ -66,9 +66,14 @@ namespace Prezentacija.Meni
                         {
                             slanjePaketaServis = new SlanjePaketaRavnomernoServis(ruterServis);
                         }
-                        else
+                        else if(tipSlanja == 1)
                         {
                             slanjePaketaServis = new SlanjePaketaNasumicnoServis(ruterServis);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ne postoji taj tip slanja\n");
+                            break;
                         }
                         mrezaServis = new MrezaServis(autentifikacijaServis, slanjePaketaServis, dnsServis);
                         List<MrezniPaket> kreiraniPaketi = kreiranjePaketa.KreiranjePaketa(brojPaketa) as List<MrezniPaket>;
@@ -101,7 +106,9 @@ namespace Prezentacija.Meni
                             Console.WriteLine("\nRacunar nije dodat!");
                         break;
                     case '5':
-                        Console.WriteLine(mrezaServis.PregledRacunara());
+                        var racunari = mrezaServis.PregledRacunara();
+                        foreach(Racunar r in racunari)
+                            Console.WriteLine(r);
                         Console.Write("Unesite serijski broj racunara kojeg zelite da obrisete: ");
                         string serijskiBroj = Console.ReadLine() ?? "";
                         bool uspesnoBrisanje = mrezaServis.ObrisiRacunar(serijskiBroj);
@@ -116,7 +123,9 @@ namespace Prezentacija.Meni
                             Console.WriteLine("\nUspesno ste dodali ruter!");
                         else
                             Console.WriteLine("\nRuter nije dodat!");
-                        Console.WriteLine(mrezaServis.PregledRutera());
+                        var ruteri = mrezaServis.PregledRutera();
+                        foreach(Ruter r in ruteri)
+                            Console.WriteLine(r);
                         break;
                     case '7':
                         kraj = true;

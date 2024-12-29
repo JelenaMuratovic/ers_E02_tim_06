@@ -19,5 +19,9 @@ namespace Domain.Models
             LokalnaIPAdresa = lokalnaIPAdresa;
         }
 
+        public override string? ToString()
+        {
+            return SerijskiBrojProizvodjaca;
+        }
     }
 }

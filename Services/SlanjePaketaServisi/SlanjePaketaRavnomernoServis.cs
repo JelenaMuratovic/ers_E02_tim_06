@@ -1,4 +1,5 @@
-﻿using Domain.Repozitorijumi.PaketiRepozitorijum;
+﻿using Domain.Models;
+using Domain.Repozitorijumi.PaketiRepozitorijum;
 using Domain.Repozitorijumi.RuteriRepozitorijum;
 using Domain.Services;
 
@@ -15,7 +16,7 @@ namespace Services.SlanjePaketaServisi
             this.ruterServis = ruterServis;
         }
 
-        public bool PosaljiPakete()//promeniti
+        public bool PosaljiPakete()
         {
             var ruteri_lista = ruteri.DobaviRutere().ToList();
             var paketi_lista = paketi.DobaviPakete().ToList();
@@ -25,9 +26,11 @@ namespace Services.SlanjePaketaServisi
             {
                 if (!paketi_lista[i].Poslat)
                 {
+                    Ruter? ruterZaSlanje = ruteri.DobaviRuterSNajmanjePaketa();
+                    if (ruterZaSlanje == null)
+                        return false;
                     paketi_lista[i].Poslat = true;
-                    string serijskiBroj = ruteri_lista[i % ruteri_lista.Count()].SerijskiBrojProizvodjaca;
-                    ruterServis.PrimiPaket(serijskiBroj, paketi_lista[i]);
+                    ruterServis.PrimiPaket(ruterZaSlanje.SerijskiBrojProizvodjaca, paketi_lista[i]);
                 }
             }
             return true;
