@@ -1,11 +1,5 @@
 ﻿using Domain.Models;
 using Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.AutentifikacioniServisi
 {
@@ -13,7 +7,7 @@ namespace Services.AutentifikacioniServisi
     {
         private static readonly List<Korisnik> korisnici;
 
-        static AutentifikacioniServis ()
+        static AutentifikacioniServis()
         {
             korisnici =
                 [

@@ -1,21 +1,14 @@
 ﻿using Domain.Models;
 using Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Prezentacija.Autentifikacija
 {
     public class AutentifikacijaKorisnika
     {
-        private readonly IAutentifikacijaServis autentifikacijaServis;
         private readonly IMrezaServis mrezaServis;
 
-        public AutentifikacijaKorisnika(IAutentifikacijaServis autentifikacijaServis, IMrezaServis servis)
+        public AutentifikacijaKorisnika(IMrezaServis servis)
         {
-            this.autentifikacijaServis = autentifikacijaServis;
             this.mrezaServis = servis;
         }
 

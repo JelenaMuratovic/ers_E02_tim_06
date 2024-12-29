@@ -4,16 +4,7 @@ using Domain.Repozitorijumi.RuteriRepozitorijum;
 using Domain.Services;
 using Moq;
 using NUnit.Framework;
-using Services;
-using Services.DNSServisi;
-using Services.RuterServisi;
 using Services.SlanjePaketaServisi;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Testovi.Servisi.SlanjePaketaServisi
 {
@@ -33,7 +24,7 @@ namespace Testovi.Servisi.SlanjePaketaServisi
             _paketiRepozitorijum = new Mock<IPaketRepozitorijum>();
 
             _slanjePaketaServis = new SlanjePaketaNasumicnoServis(_ruterServis.Object);
-           
+
         }
 
         [SetUp]
@@ -86,7 +77,7 @@ namespace Testovi.Servisi.SlanjePaketaServisi
             var ruteriLista = new List<Ruter>();
 
             var paketiLista = new List<MrezniPaket>()
-            {                
+            {
                 new MrezniPaket(0,0,0,"",""),
                 new MrezniPaket(0,0,0,"",""),
                 new MrezniPaket(0,0,0,"","")

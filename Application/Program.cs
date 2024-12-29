@@ -3,13 +3,12 @@ using Domain.Services;
 using Prezentacija.Autentifikacija;
 using Prezentacija.Meni;
 using Services.AutentifikacioniServisi;
-using Services.EvidencijaServisi;
-using Prezentacija.KreiranjePaketa;
-using Services.MrezaServisi;
-using Services.SlanjePaketaServisi;
-using Services.PregledEvidencijeServisi;
 using Services.DNSServisi;
+using Services.EvidencijaServisi;
+using Services.MrezaServisi;
+using Services.PregledEvidencijeServisi;
 using Services.RuterServisi;
+using Services.SlanjePaketaServisi;
 
 namespace Application
 {
@@ -25,10 +24,10 @@ namespace Application
             ISlanjePaketaServis slanjePaketaServis = new SlanjePaketaRavnomernoServis(ruterServis);
             IMrezaServis mrezaServis = new MrezaServis(autentifikacijaServis, slanjePaketaServis, dnsServis);
 
-            var auth = new AutentifikacijaKorisnika(autentifikacijaServis, mrezaServis);
+            var auth = new AutentifikacijaKorisnika(mrezaServis);
             if (!auth.UlogujSe(out Korisnik korisnik)) return;
 
-            var meni = new IspisMenija(mrezaServis, ruterServis, dnsServis, pregledEvidencijeServis, evidencijaServis, slanjePaketaServis);
+            var meni = new IspisMenija(autentifikacijaServis, mrezaServis, ruterServis, dnsServis, pregledEvidencijeServis, evidencijaServis, slanjePaketaServis);
             meni.PrikaziMeni();
         }
     }

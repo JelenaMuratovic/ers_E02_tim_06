@@ -1,16 +1,10 @@
-﻿using Domain.Repozitorijumi.RuteriRepozitorijum;
+﻿using Domain.Enums;
+using Domain.Models;
+using Domain.Repozitorijumi.RuteriRepozitorijum;
 using Domain.Services;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Services.RuterServisi;
-using Domain.Enums;
-using Domain.Models;
-using NUnit.Framework.Constraints;
 
 
 namespace Testovi.Servisi.RuterServisi

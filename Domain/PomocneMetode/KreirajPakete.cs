@@ -1,16 +1,8 @@
 ﻿using Domain.Models;
-using Domain.Services;
-using Prezentacija.GenerisanjePaketa;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Repozitorijumi.PaketiRepozitorijum;
 
-namespace Prezentacija.KreiranjePaketa
+namespace Domain.PomocneMetode
 {
-    public class KreirajPakete : IKreiranjePaketaServis
+    public class KreirajPakete
     {
         public KreirajPakete()
         {

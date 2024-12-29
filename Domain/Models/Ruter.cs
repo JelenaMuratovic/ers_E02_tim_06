@@ -1,10 +1,4 @@
 ﻿using Domain.Enums;
-using Domain.Repozitorijumi.PaketiRepozitorijum;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Models
 {
@@ -23,5 +17,5 @@ namespace Domain.Models
             VrstaRutera = vrstaRutera;
         }
     }
-    
+
 }

@@ -1,11 +1,5 @@
 ﻿using Domain.Models;
 using Domain.Services;
-using Services.EvidencijaServisi;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.DNSServisi
 {
@@ -32,7 +26,7 @@ namespace Services.DNSServisi
             {
                 return false;
             }
-            evidencija.Upisi(paket.ToString());
+            evidencija.Upisi(paket.ToString() ?? "");
             return true;
         }
     }

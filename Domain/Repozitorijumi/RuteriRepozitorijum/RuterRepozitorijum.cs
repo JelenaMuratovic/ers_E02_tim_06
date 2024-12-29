@@ -1,11 +1,5 @@
-﻿using Domain.Models;
-using Domain.Repozitorijumi.PaketiRepozitorijum;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Enums;
+﻿using Domain.Enums;
+using Domain.Models;
 
 namespace Domain.Repozitorijumi.RuteriRepozitorijum
 {

@@ -1,10 +1,6 @@
 ﻿using Domain.Models;
 using Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.PregledEvidencijeServisi
 {
@@ -13,9 +9,9 @@ namespace Services.PregledEvidencijeServisi
         public string Pregled(IEnumerable<MrezniPaket> listaPaketa)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            foreach(MrezniPaket paket in listaPaketa)
+            foreach (MrezniPaket paket in listaPaketa)
             {
-                stringBuilder.Append(paket.ToString()+'\n');
+                stringBuilder.Append(paket.ToString() + '\n');
             }
             return stringBuilder.ToString();
         }

@@ -1,14 +1,8 @@
-﻿using Domain.Models;
-using Domain.Repozitorijumi.PaketiRepozitorijum;
+﻿using Domain.Repozitorijumi.PaketiRepozitorijum;
 using Domain.Repozitorijumi.RacunariRepozitorijum;
 using Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Services
+namespace Services.ServisiRaspodelePaketa
 {
     public class RasporediPaketeServis : IRasporediPakete
     {
@@ -32,7 +26,7 @@ namespace Services
                     paketi_lista[i].IPAdresaPosiljaoca = racunari_lista[i % racunari_lista.Count()].LokalnaIPAdresa;
                 }
             }
-            
+
             return true;
         }
     }

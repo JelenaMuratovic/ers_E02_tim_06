@@ -1,17 +1,12 @@
 ﻿using Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Prezentacija.GenerisanjePaketa
+namespace Domain.PomocneMetode
 {
     public class NasumicnoGenerisanjeRacunara
     {
         private static Random random = new Random();
-        private static readonly int[] KapacitetRadneMemorije = [16,32,64,128];
-        private static readonly int[] KapacitetSkladisneMemorije = [256,128,512,1024];
+        private static readonly int[] KapacitetRadneMemorije = [16, 32, 64, 128];
+        private static readonly int[] KapacitetSkladisneMemorije = [256, 128, 512, 1024];
         private static int brojacLokalneIPAdrese = 4;
         private static int brojacSerijskogBroja = 126;
         public static string GenerisiSerijskiBroj()

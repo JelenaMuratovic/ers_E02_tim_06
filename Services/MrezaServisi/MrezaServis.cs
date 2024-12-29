@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Models;
+﻿using Domain.Models;
 using Domain.Repozitorijumi.RacunariRepozitorijum;
 using Domain.Repozitorijumi.RuteriRepozitorijum;
 using Domain.Services;
-using Services.EvidencijaServisi;
 
 namespace Services.MrezaServisi
 {
@@ -25,7 +19,7 @@ namespace Services.MrezaServisi
             this.slanjePaketaServis = slanjePaketaServis;
             this.dnsServis = dnsServis;
         }
-       
+
         public bool DodajRacunar(Racunar racunar)
         {
             return Racunari.DodajRacunar(racunar);
@@ -55,13 +49,13 @@ namespace Services.MrezaServisi
         {
             return auth.Prijava(KorisnickoIme, Lozinka);
         }
-        public string? PregledRacunara()
+        public string? PregledRacunara() //izmeniti
         {
-            return "Racunari:\n" + Racunari.ToString();
+            return "racunari:\n" + Racunari.ToString();
         }
         public string? PregledRutera()
         {
-            return "Ruteri:\n" + Ruteri.ToString();
+            return "ruteri:\n" + Ruteri.ToString();
         }
     }
 }

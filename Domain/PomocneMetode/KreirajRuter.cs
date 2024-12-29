@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Models;
-using Domain.Services;
-using Prezentacija.GenerisanjeEntiteta;
+﻿using Domain.Models;
 
-namespace Prezentacija.KreiranjeRutera
+namespace Domain.PomocneMetode
 {
-    public class KreirajRuter : IKreiranjeRuteraServis
+    public class KreirajRuter
     {
-        Ruter IKreiranjeRuteraServis.KreirajRuter()
+        public Ruter KreiranjeRutera()
         {
             return new Ruter(NasumicnoGenerisanjeRutera.GenerisiSerijskiBrojProizvodjaca(),
                              NasumicnoGenerisanjeRutera.GenerisiNasumicnuMaxBrzinaPrenosaPodataka(),

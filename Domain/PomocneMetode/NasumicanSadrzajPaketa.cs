@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Enums;
+﻿using Domain.Enums;
 
-namespace Prezentacija.GenerisanjePaketa
+namespace Domain.PomocneMetode
 {
     public class NasumicanSadrzajPaketa
     {
-        private static Random  random = new Random();
+        private static Random random = new Random();
         private static readonly string[] sadrzaj =
             [
                 "www.example1.com",
@@ -30,7 +24,7 @@ namespace Prezentacija.GenerisanjePaketa
         public static MrezniProtokol GenerisiNasumicanProtokol()
         {
             //random.Next(Enum.GetValues(typeof(MrezniProtokol)).Length) je random broj od 0-4
-            return (MrezniProtokol)random.Next(Enum.GetValues(typeof(MrezniProtokol)).Length-1);
+            return (MrezniProtokol)random.Next(Enum.GetValues(typeof(MrezniProtokol)).Length - 1);
         }
         public static int GenerisiNasumicnuVelZaglavlja()
         {
@@ -42,11 +36,11 @@ namespace Prezentacija.GenerisanjePaketa
         }
         public static string GenerisiNasumicanSadrzaj()
         {
-            return sadrzaj[random.Next(sadrzaj.Length-1)];
+            return sadrzaj[random.Next(sadrzaj.Length - 1)];
         }
         public static string GenerisiNasumicnuIPAdresu()
         {
-            return IPadresePrimaoca[random.Next(IPadresePrimaoca.Length-1)];
+            return IPadresePrimaoca[random.Next(IPadresePrimaoca.Length - 1)];
         }
     }
 }

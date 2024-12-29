@@ -1,10 +1,5 @@
 ﻿using Domain.Models;
 using Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace Services.PregledEvidencijeServisi
@@ -24,7 +19,7 @@ namespace Services.PregledEvidencijeServisi
                 }
                 return "Paketi sacuvani u: " + imeFajla;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return "Greska pri upisivanju u xml fajl: " + ex.Message;
             }

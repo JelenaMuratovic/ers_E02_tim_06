@@ -1,17 +1,6 @@
-﻿using Domain.Models;
-using Domain.Repozitorijumi.PaketiRepozitorijum;
-using Domain.Repozitorijumi.RacunariRepozitorijum;
+﻿using Domain.Repozitorijumi.PaketiRepozitorijum;
 using Domain.Repozitorijumi.RuteriRepozitorijum;
 using Domain.Services;
-using Services.DNSServisi;
-using Services.RuterServisi;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.SlanjePaketaServisi
 {
@@ -26,11 +15,11 @@ namespace Services.SlanjePaketaServisi
             this.ruterServis = ruterServis;
         }
 
-        public bool PosaljiPakete()
+        public bool PosaljiPakete()//promeniti
         {
             var ruteri_lista = ruteri.DobaviRutere().ToList();
             var paketi_lista = paketi.DobaviPakete().ToList();
-            if(ruteri_lista.Count == 0 || paketi_lista.Count == 0 || ruteri_lista == null || paketi_lista == null)
+            if (ruteri_lista.Count == 0 || paketi_lista.Count == 0 || ruteri_lista == null || paketi_lista == null)
                 return false;
             for (int i = 0; i < paketi_lista.Count(); i++)
             {

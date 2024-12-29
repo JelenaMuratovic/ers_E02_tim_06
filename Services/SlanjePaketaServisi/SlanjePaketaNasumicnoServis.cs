@@ -2,12 +2,6 @@
 using Domain.Repozitorijumi.PaketiRepozitorijum;
 using Domain.Repozitorijumi.RuteriRepozitorijum;
 using Domain.Services;
-using Services.RuterServisi;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.SlanjePaketaServisi
 {

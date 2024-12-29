@@ -1,18 +1,9 @@
 ﻿using Domain.Models;
 using Domain.Repozitorijumi.PaketiRepozitorijum;
 using Domain.Repozitorijumi.RacunariRepozitorijum;
-using Domain.Repozitorijumi.RuteriRepozitorijum;
 using Domain.Services;
 using Moq;
 using NUnit.Framework;
-using Services;
-using Services.DNSServisi;
-using Services.RuterServisi;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Testovi.Servisi.ServisiRaspodelePaketa
 {
