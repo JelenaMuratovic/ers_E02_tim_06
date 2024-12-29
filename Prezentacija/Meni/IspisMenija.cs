@@ -64,9 +64,11 @@ namespace Prezentacija.Meni
                     case '1':
                         int brojPaketa;
                         int tipSlanja;
-                        Console.WriteLine("Koliko paketa zelite da posaljete?");
+                        Console.WriteLine("\nKoliko paketa zelite da posaljete?");
+                        Console.Write("Broj paketa: ");
                         brojPaketa = Int32.Parse(Console.ReadLine() ?? "");
-                        Console.WriteLine("1. Salji nasumicno\n2. Salji ravnomerno\n");
+                        Console.WriteLine("1. Salji nasumicno\n2. Salji ravnomerno");
+                        Console.Write("Nacin slanja: "); 
                         tipSlanja = Int32.Parse(Console.ReadLine() ?? "");
                        
                         if (tipSlanja == 2)
@@ -103,26 +105,26 @@ namespace Prezentacija.Meni
                     case '4':
                         bool uspesnoDodavanje = mrezaServis.DodajRacunar(kreiranjeRacunara.KreirajRacunar());
                         if(uspesnoDodavanje)
-                            Console.WriteLine("\nUspesno ste dodali racunar");
+                            Console.WriteLine("\nUspesno ste dodali racunar!");
                         else
-                            Console.WriteLine("\nRacunar nije dodat");
+                            Console.WriteLine("\nRacunar nije dodat!");
                         break;
                     case '5':
-                        Console.WriteLine("Unesite serijski broj racunara kojeg zelite da obrisete: ");
                         Console.WriteLine(mrezaServis.PregledRacunara());
+                        Console.Write("Unesite serijski broj racunara kojeg zelite da obrisete: ");
                         string serijskiBroj = Console.ReadLine();
                         bool uspesnoBrisanje = mrezaServis.ObrisiRacunar(serijskiBroj);
                         if(uspesnoBrisanje)
                             Console.WriteLine("Uspesno ste obrisali racunar sa serijskim brojem: " + serijskiBroj);
                         else
-                            Console.WriteLine("Ne postoji racunar sa tim serijskim brojem");
+                            Console.WriteLine("Ne postoji racunar sa tim serijskim brojem!");
                         break;
                     case '6':
                         bool uspesnoDodavanjeRuter = mrezaServis.DodajRuter(kreiranjeRutera.KreirajRuter());
                         if (uspesnoDodavanjeRuter)
-                            Console.WriteLine("\nUspesno ste dodali ruter");
+                            Console.WriteLine("\nUspesno ste dodali ruter!");
                         else
-                            Console.WriteLine("\nRuter nije dodat");
+                            Console.WriteLine("\nRuter nije dodat!");
                         Console.WriteLine(mrezaServis.PregledRutera());
                         break;
                     case '7':
