@@ -47,12 +47,14 @@ namespace Prezentacija.Meni
                 Console.Write("Opcija: ");
                 string? opcija = Console.ReadLine();
 
-                if (string.IsNullOrWhiteSpace(opcija))
+                if (string.IsNullOrWhiteSpace(opcija) || !int.TryParse(opcija, out int opcijaBroj))
+                    continue;
+                if (opcijaBroj < 0 || opcijaBroj > 7)
                     continue;
 
-                switch (opcija[0])
+                switch (opcijaBroj)
                 {
-                    case '1':
+                    case 1:
                         int brojPaketa;
                         int tipSlanja;
                         Console.WriteLine("\nKoliko paketa zelite da posaljete?");
@@ -84,7 +86,7 @@ namespace Prezentacija.Meni
                         rasporediPaketeServis.RasporediPaketeRacunarima();
                         mrezaServis.PosaljiPakete();
                         break;
-                    case '2':
+                    case 2:
                         pregledEvidencijeServis = new PregledEvidencijeKonzolaServis();
                         dnsServis = new DNSServis(pregledEvidencijeServis, evidencijaServis);
                         mrezaServis = new MrezaServis(autentifikacijaServis, slanjePaketaServis, dnsServis);
@@ -92,20 +94,20 @@ namespace Prezentacija.Meni
                             Console.WriteLine("lista je prazna");
                         Console.WriteLine(mrezaServis.PregledPaketa(paketi.DobaviPakete()));
                         break;
-                    case '3':
+                    case 3:
                         pregledEvidencijeServis = new PregledEvidencijeXMLServis();
                         dnsServis = new DNSServis(pregledEvidencijeServis, evidencijaServis);
                         mrezaServis = new MrezaServis(autentifikacijaServis, slanjePaketaServis, dnsServis);
                         Console.WriteLine(mrezaServis.PregledPaketa(paketi.DobaviPakete()));
                         break;
-                    case '4':
+                    case 4:
                         bool uspesnoDodavanje = mrezaServis.DodajRacunar(kreiranjeRacunara.KreiranjeRacunara());
                         if (uspesnoDodavanje)
                             Console.WriteLine("\nUspesno ste dodali racunar!");
                         else
                             Console.WriteLine("\nRacunar nije dodat!");
                         break;
-                    case '5':
+                    case 5:
                         var racunari = mrezaServis.PregledRacunara();
                         foreach(Racunar r in racunari)
                             Console.WriteLine(r);
@@ -117,7 +119,7 @@ namespace Prezentacija.Meni
                         else
                             Console.WriteLine("Ne postoji racunar sa tim serijskim brojem!");
                         break;
-                    case '6':
+                    case 6:
                         bool uspesnoDodavanjeRuter = mrezaServis.DodajRuter(kreiranjeRutera.KreiranjeRutera());
                         if (uspesnoDodavanjeRuter)
                             Console.WriteLine("\nUspesno ste dodali ruter!");
@@ -127,7 +129,7 @@ namespace Prezentacija.Meni
                         foreach(Ruter r in ruteri)
                             Console.WriteLine(r);
                         break;
-                    case '7':
+                    case 7:
                         kraj = true;
                         break;
                     default:
