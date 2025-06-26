@@ -88,8 +88,16 @@ namespace Prezentacija.Meni
                             {
                                 paketi.DodajPaket(mp);
                             }
-                            rasporediPaketeServis.RasporediPaketeRacunarima();
-                            mrezaServis.PosaljiPakete();
+                            if (!rasporediPaketeServis.RasporediPaketeRacunarima())
+                            {
+                                Console.WriteLine("\nDoslo je do greske paketi nisu raspodeljeni");
+                                break;
+                            }
+                            else Console.WriteLine("\nUspesno rasporedjivanje paketa");
+
+                            if (!mrezaServis.PosaljiPakete())
+                                Console.WriteLine("\nDoslo je do greske paketi nisu poslati");
+                            else Console.WriteLine("\nUspesno ste poslali pakete!");
                         }
                         break;
                     case 2:
@@ -109,20 +117,32 @@ namespace Prezentacija.Meni
                         break;
                     case 4:
                         bool uspesnoDodavanje = mrezaServis.DodajRacunar(kreiranjeRacunara.KreiranjeRacunara());
+                        var racunari = mrezaServis.PregledRacunara();
                         if (uspesnoDodavanje)
+                        {
                             Console.WriteLine("\nUspesno ste dodali racunar!");
+                            Console.WriteLine("Serijski brojevi racunara:\n");
+                            foreach (Racunar r in racunari)
+                                Console.WriteLine("\t" + r);
+                        }
                         else
                             Console.WriteLine("\nRacunar nije dodat!");
                         break;
                     case 5:
-                        var racunari = mrezaServis.PregledRacunara();
-                        foreach(Racunar r in racunari)
-                            Console.WriteLine(r);
-                        Console.Write("Unesite serijski broj racunara kojeg zelite da obrisete: ");
+                        racunari = mrezaServis.PregledRacunara();
+                        Console.WriteLine("Serijski brojevi racunara:\n");
+                        foreach (Racunar r in racunari)
+                            Console.WriteLine("\t" + r);
+                        Console.Write("\nUnesite serijski broj racunara kojeg zelite da obrisete: ");
                         string serijskiBroj = Console.ReadLine() ?? "";
                         bool uspesnoBrisanje = mrezaServis.ObrisiRacunar(serijskiBroj);
                         if (uspesnoBrisanje)
+                        {
                             Console.WriteLine("Uspesno ste obrisali racunar sa serijskim brojem: " + serijskiBroj);
+                            Console.WriteLine("Serijski brojevi racunara:\n");
+                            foreach (Racunar r in racunari)
+                                Console.WriteLine("\t" + r);
+                        }
                         else
                             Console.WriteLine("Ne postoji racunar sa tim serijskim brojem!");
                         break;
@@ -133,8 +153,9 @@ namespace Prezentacija.Meni
                         else
                             Console.WriteLine("\nRuter nije dodat!");
                         var ruteri = mrezaServis.PregledRutera();
+                        Console.WriteLine("Serijski brojevi rutera:\n");
                         foreach(Ruter r in ruteri)
-                            Console.WriteLine(r);
+                            Console.WriteLine("\t" + r);
                         break;
                     case 7:
                         kraj = true;
