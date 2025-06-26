@@ -13,6 +13,8 @@ namespace Services.PregledEvidencijeServisi
             try
             {
                 XmlSerializer serialiser = new XmlSerializer(typeof(MrezniPaket));
+                if (listaPaketa.Count() == 0)
+                    return "Nema paketa za upis u xml datoteku";
                 foreach (MrezniPaket mp in listaPaketa)
                 {
                     serialiser.Serialize(writer, mp);

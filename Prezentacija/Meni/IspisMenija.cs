@@ -95,7 +95,7 @@ namespace Prezentacija.Meni
                         mrezaServis = new MrezaServis(autentifikacijaServis, slanjePaketaServis, dnsServis);
                         string paketiZaIspis = mrezaServis.PregledPaketa(paketi.DobaviPakete());
                         if (paketiZaIspis == "")
-                            Console.WriteLine("lista je prazna");
+                            Console.WriteLine("Nema paketa za pregled");
                         Console.WriteLine(paketiZaIspis);
                         break;
                     case 3:
