@@ -81,13 +81,16 @@ namespace Prezentacija.Meni
                             break;
                         }
                         mrezaServis = new MrezaServis(autentifikacijaServis, slanjePaketaServis, dnsServis);
-                        List<MrezniPaket> kreiraniPaketi = kreiranjePaketa.KreiranjePaketa(brojPaketa) as List<MrezniPaket>;
-                        foreach (MrezniPaket mp in kreiraniPaketi)
+                        List<MrezniPaket>? kreiraniPaketi = kreiranjePaketa.KreiranjePaketa(brojPaketa) as List<MrezniPaket>;
+                        if(kreiraniPaketi != null)
                         {
-                            paketi.DodajPaket(mp);
+                            foreach (MrezniPaket mp in kreiraniPaketi)
+                            {
+                                paketi.DodajPaket(mp);
+                            }
+                            rasporediPaketeServis.RasporediPaketeRacunarima();
+                            mrezaServis.PosaljiPakete();
                         }
-                        rasporediPaketeServis.RasporediPaketeRacunarima();
-                        mrezaServis.PosaljiPakete();
                         break;
                     case 2:
                         pregledEvidencijeServis = new PregledEvidencijeKonzolaServis();
