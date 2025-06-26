@@ -57,9 +57,12 @@ namespace Prezentacija.Meni
                     case 1:
                         int brojPaketa;
                         int tipSlanja;
-                        Console.WriteLine("\nKoliko paketa zelite da posaljete?");
-                        Console.Write("Broj paketa: ");
-                        brojPaketa = Int32.Parse(Console.ReadLine() ?? "");
+                        do
+                        {
+                            Console.WriteLine("\nKoliko paketa zelite da posaljete?");
+                            Console.Write("Broj paketa: ");
+                        } while (!int.TryParse(Console.ReadLine(), out brojPaketa));
+                        
                         Console.WriteLine("1. Salji nasumicno\n2. Salji ravnomerno");
                         Console.Write("Nacin slanja: ");
                         tipSlanja = Int32.Parse(Console.ReadLine() ?? "");
