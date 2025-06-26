@@ -93,9 +93,10 @@ namespace Prezentacija.Meni
                         pregledEvidencijeServis = new PregledEvidencijeKonzolaServis();
                         dnsServis = new DNSServis(pregledEvidencijeServis, evidencijaServis);
                         mrezaServis = new MrezaServis(autentifikacijaServis, slanjePaketaServis, dnsServis);
-                        if (mrezaServis.PregledPaketa(paketi.DobaviPakete()) == "")
+                        string paketiZaIspis = mrezaServis.PregledPaketa(paketi.DobaviPakete());
+                        if (paketiZaIspis == "")
                             Console.WriteLine("lista je prazna");
-                        Console.WriteLine(mrezaServis.PregledPaketa(paketi.DobaviPakete()));
+                        Console.WriteLine(paketiZaIspis);
                         break;
                     case 3:
                         pregledEvidencijeServis = new PregledEvidencijeXMLServis();
